@@ -6,6 +6,10 @@ document.getElementById('chordButton').addEventListener('click', function() {
     showSection('chordSection', this);
 });
 
+document.getElementById('infoButton').addEventListener('click', function() {
+    showSection('infoSection', this);
+});
+
 function showSection(sectionId, button) {
     document.querySelectorAll('section').forEach(section => section.classList.add('hidden'));
     document.getElementById(sectionId).classList.remove('hidden');
@@ -16,3 +20,7 @@ function showSection(sectionId, button) {
 
 // Ustaw początkową sekcję
 showSection('intervalSection', document.getElementById('intervalButton'));
+
+infoButton.addEventListener('click', function() {
+    showSection('infoSection', this);
+});

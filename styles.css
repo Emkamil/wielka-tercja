@@ -7,10 +7,11 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    min-width: 100%;
 }
 
 .container {
-    max-width: 100%;
+    
     margin: auto;
     padding: 20px;
     flex: 1;
@@ -25,8 +26,9 @@ header, footer {
     background-color: #1f1f1f;
     color: #e0e0e0;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     flex-wrap: wrap;
+    align-content: center;
 }
 
 .header-left, .footer-left {
@@ -60,7 +62,7 @@ nav button, nav a {
     background-color: #383838;
     color: #e0e0e0;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     text-decoration: none;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -78,8 +80,14 @@ nav button:hover, nav a:hover {
 
 main {
     text-align: center;
-    margin-top: 20px;
+    margin: 10px 0 10px 0;
     flex: 1;
+    align-items: center;
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    padding: 20px;
+    border-radius: 10px;
+    flex-wrap: wrap;
 }
 
 section.hidden {
@@ -108,8 +116,8 @@ section.hidden {
     }
 
     nav button, nav a {
-        width: 50%;
-        
+        width: 100%;
+        max-width: 300px;
         margin: 5px auto;
     }
 }
