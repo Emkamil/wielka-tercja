@@ -4,6 +4,8 @@
     <title>Wielka-tercja: Nauka Interwałów i Akordów</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+
 </head>
 <body>
     <div class="container">
@@ -33,10 +35,21 @@
                 <a href="https://github.com/Mkamil52020/wielka-tercja" target="_blank">Repozytorium GitHub</a>
             </nav>
             <div class="footer-right">
-                <p>Licencja: CC BY-NC 4.0</p>
+                <p>Licencja: <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></p>
             </div>
         </footer>
     </div>
     <script src="scripts.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+    </script>
 </body>
 </html>

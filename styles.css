@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 100%;
     margin: auto;
     padding: 20px;
     flex: 1;
@@ -108,8 +108,8 @@ section.hidden {
     }
 
     nav button, nav a {
-        width: 100%;
-        max-width: 300px;
+        width: 50%;
+        
         margin: 5px auto;
     }
 }
