@@ -1,94 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Moll-Dur</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-    </style>
+    <title>Wielka-tercja: Nauka Interwałów i Akordów</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>Nauka rozpoznawania interwałów</h1>
-    <label for="duration">Długość grania dźwięków:</label>
-    <input type="range" id="duration" min="0" max="3" step="0.5" value="1">
-    <span id="durationValue">1 sekunda</span>
-    <button onclick="playInterval()">Odtwórz interwał</button>
-    <script>
-        const notes = {
-            'c': 'sounds/c.mp3',
-            'd': 'sounds/d.mp3',
-            'e': 'sounds/e.mp3',
-            'f': 'sounds/f.mp3',
-            'g': 'sounds/g.mp3',
-            'a': 'sounds/a.mp3',
-            'b': 'sounds/b.mp3',
-            'c1': 'sounds/c1.mp3',
-            'd1': 'sounds/d1.mp3',
-            'e1': 'sounds/e1.mp3',
-            'f1': 'sounds/f1.mp3',
-            'g1': 'sounds/g1.mp3',
-            'a1': 'sounds/a1.mp3',
-            'b1': 'sounds/b1.mp3',
-            'c2': 'sounds/c2.mp3',
-            'd2': 'sounds/d2.mp3',
-            'e2': 'sounds/e2.mp3',
-            'f2': 'sounds/f2.mp3',
-            'g2': 'sounds/g2.mp3',
-            'a2': 'sounds/a2.mp3',
-            'b2': 'sounds/b2.mp3'
-        };
-
-        const durationDisplay = {
-            0: 'harmoniczny (jednocześnie)',
-            0.5: '0,5 sekundy',
-            1: '1 sekunda',
-            2: '2 sekundy'
-        };
-
-        document.getElementById('duration').addEventListener('input', function () {
-            document.getElementById('durationValue').textContent = durationDisplay[this.value];
-        });
-
-        function playSound(note) {
-            const audio = new Audio(note);
-            audio.play();
-        }
-
-        function getRandomNote() {
-            const noteKeys = Object.keys(notes);
-            return noteKeys[Math.floor(Math.random() * noteKeys.length)];
-        }
-
-        function playInterval() {
-            const note = getRandomNote();
-            const interval = Math.floor(Math.random() * 8);
-            const frequencies = [0, 2, 4, 5, 7, 9, 11, 12];
-            const duration = parseFloat(document.getElementById('duration').value) * 1000;
-
-            if (duration === 0) {
-                playSound(notes[note]);
-                playSound(notes[Object.keys(notes)[(Object.keys(notes).indexOf(note) + frequencies[interval]) % Object.keys(notes).length]]);
-            } else {
-                playSound(notes[note]);
-                setTimeout(() => {
-                    const newNoteIndex = (Object.keys(notes).indexOf(note) + frequencies[interval]) % Object.keys(notes).length;
-                    const newNote = Object.keys(notes)[newNoteIndex];
-                    playSound(notes[newNote]);
-                }, duration);
-            }
-        }
-    </script>
+    <div class="container">
+        <header>
+            
+            <nav class="center-nav">
+                <button id="intervalButton" class="tab-button">Interwały</button>
+                <button id="chordButton" class="tab-button">Akordy</button>
+            </nav>
+            
+        </header>
+        <main>
+            <section id="intervalSection" class="hidden">
+                <h2>Interwały</h2>
+                <!-- Dodaj funkcjonalność nauki interwałów tutaj -->
+            </section>
+            <section id="chordSection" class="hidden">
+                <h2>Akordy</h2>
+                <!-- Dodaj funkcjonalność nauki akordów tutaj -->
+            </section>
+        </main>
+        <footer>
+            <div class="footer-left">
+                <p>&copy; 2025 Kamil Machowski</p>
+            </div>
+            <nav class="center-nav">
+                <a href="https://github.com/Mkamil52020/wielka-tercja" target="_blank">Repozytorium GitHub</a>
+            </nav>
+            <div class="footer-right">
+                <p>Licencja: CC BY-NC 4.0</p>
+            </div>
+        </footer>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
