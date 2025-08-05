@@ -4,9 +4,13 @@ self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
     cache.addAll([
-      '/',
-      '/app.js',
-      '/style.css'
+      'index.html',
+      'app.js',
+      'style.css',
+      'sw.js',
+      'manifest.json',
+      'icon512.png',
+      'icon.ico'
     ]);
   })());
 });
@@ -29,4 +33,5 @@ self.addEventListener('fetch', event => {
         }
     }
   })());
+
 });
