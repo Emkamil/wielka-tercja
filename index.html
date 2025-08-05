@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tercja Wielka</title>
+    <meta name="description" content="Pomoc przy nauce rozpoznawania interwałów i akordów"/>
+    
+    <link rel="icon" href="/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+    <header>
+        <nav class="header-menu">
+            <button class="menu-button start_color active" data-mode="interwaly">Interwały</button>
+            <button class="menu-button start_color" data-mode="akordy">Akordy</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <sections id="start_container" class="mode-section active-mode">
+            <h2>Wybierz tryb ćwiczeń z menu</h2>
+        </sections>
+
+        <section id="interwaly" class="mode-section">
+            <h2>Tryb: Interwały</h2>
+            
+        </section>
+        
+        <section id="akordy" class="mode-section">
+            <h2>Tryb: Akordy</h2>
+            
+        </section>
+    </main>
+    <a href="/info.html" class="info-button">?</a>
+    <script src="app.js"></script>
+    <script>
+        if('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' });
+        }
+    </script>
+</body>
+</html>
