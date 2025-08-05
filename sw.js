@@ -1,16 +1,18 @@
 const CACHE_NAME = `Wielka_tercja`;
+const repoPath = '/wielka-tercja/';
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE_NAME);
     cache.addAll([
-      'index.html',
-      'app.js',
-      'style.css',
-      'sw.js',
-      'manifest.json',
-      'icon512.png',
-      'icon.ico'
+      repoPath, // główna ścieżka
+      repoPath + 'index.html',
+      repoPath + 'app.js',
+      repoPath + 'style.css',
+      repoPath + 'sw.js',
+      repoPath + 'manifest.json',
+      repoPath + 'icon512.png',
+      repoPath + 'icon.ico'
     ]);
   })());
 });
@@ -18,7 +20,6 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
-
 
     const cachedResponse = await cache.match(event.request);
     if (cachedResponse) {
@@ -29,9 +30,8 @@ self.addEventListener('fetch', event => {
           cache.put(event.request, fetchResponse.clone());
           return fetchResponse;
         } catch (e) {
-
+            // offline
         }
     }
   })());
-
 });
