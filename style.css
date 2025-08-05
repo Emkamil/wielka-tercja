@@ -44,6 +44,7 @@
 
         .menu-button:hover {
             background-color: #163346;
+                border-radius: 5px;
         }
 
         .menu-button.start_color {
@@ -52,6 +53,7 @@
 
         .menu-button.active {
             background-color: #3498db;
+                border-radius: 5px;
             transform: scale(1.1), scale(1.0);
         }
 
@@ -126,6 +128,7 @@
         .settings-button:active{
             background-color: #163346;
             transform: scale(1.1), scale(1.0);
+                border-radius: 5px;
         }
 
         .setting-button svg{
@@ -173,5 +176,6 @@
             .score-box{
                 font-size: 1.2em;
             }
+
 
         }
