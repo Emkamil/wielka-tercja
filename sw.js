@@ -11,8 +11,9 @@ self.addEventListener('install', event => {
       repoPath + 'style.css',
       repoPath + 'sw.js',
       repoPath + 'manifest.json',
-      repoPath + 'icon512.png',
-      repoPath + 'icon.ico'
+      repoPath + 'icons/icon512.png',
+      repoPath + 'icons/icon.ico',
+      repoPath + 'icons/settings.svg'
     ]);
   })());
 });

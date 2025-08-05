@@ -4,18 +4,20 @@
             padding: 0;
             background-color: #f4f4f9;
             color: #333;
+            
         }
         
-        
+        h1 {
+            font-size: 3em;
+            color: #2c3e50;
+        }
         
         header {
             background-color: #2c3e50;
             color: #ecf0f1;
             text-align: center;
-            padding: 20px;
+            padding: 10px;
         }
-        
-        
 
         .header-menu {
             display: flex;
@@ -25,20 +27,15 @@
             
         }
 
-        .header-menu {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
         .menu-button {
             background-color: #306181;
             color: white;
             border: none;
             border-radius: 5px;
             padding: 12px 24px;
-            max-width: 200px;
+            max-width: 250px;
+            height: 43px;
+            font-size: 1em;
             flex-grow: 1; 
             flex-basis: 0;
             cursor: pointer;
@@ -47,7 +44,6 @@
 
         .menu-button:hover {
             background-color: #163346;
-            transform: scale(1.05);
         }
 
         .menu-button.start_color {
@@ -70,6 +66,7 @@
             flex-grow: 1;
             padding: 20px;
             box-sizing: border-box;
+            padding-bottom: 70px
         }
 
 
@@ -87,33 +84,85 @@
         .mode-section.active-mode {
             display: block;
         }
-
-        .info-button {
+                
+        .status-bar{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            /* stopka na dole */
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-
-            background-color: #3498db;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding-left: 10px;
+            padding-right: 10px;
+            background-color: #34495e;
             color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            
+            box-sizing: border-box;
+        }
+
+        .settings-button {
+            background-color: rgb(58, 137, 216);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            margin-left: auto;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            z-index: 1000;
+            width: 43px;
+            height: 43px;
+            display: flex;
+            justify-content: center; 
+            align-items: center;    
+            padding: 5px;             
+        }
+
+        .settings-button:active{
+            background-color: #163346;
+            transform: scale(1.1), scale(1.0);
+        }
+
+        .setting-button svg{
+            max-width: 30px;
+            max-height: 30px;
+            width: 100%;
+            height: auto;
+        }
+
+        .score-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .score-box {
+            min-width: 43px;
+            min-height: 43px;
+            border-radius: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
-            text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-
-            z-index: 1000; 
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            
+            
         }
 
-        .info-button:hover {
-            background-color: #2980b9;
-            transform: scale(1.1);
+        .correct-answers {
+            background-color: #25af5f;
         }
-        
+
+        .wrong-answers {
+            background-color: #e74c3c;
+        }
+
         @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
@@ -121,4 +170,8 @@
             .container {
                 padding: 10px;
             }
+            .score-box{
+                font-size: 1.2em;
+            }
+
         }

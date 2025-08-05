@@ -6,7 +6,7 @@
     <title>Tercja Wielka</title>
     <meta name="description" content="Pomoc przy nauce rozpoznawania interwałów i akordów"/>
     
-    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <link rel="icon" href="icons/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
@@ -33,7 +33,23 @@
             
         </section>
     </main>
-    <a href="/info.html" class="info-button">?</a>
+    <stauts-bar class="status-bar">
+        <p>Wynik: </p>
+
+        <div class="score-container">
+            <div class="score-box correct-answers">
+                <span id="correct-count">0</span>
+            </div>
+            <div class="score-box wrong-answers">
+                <span id="wrong-count">0</span>
+            </div>
+        </div>
+
+        <button class="settings-button" data-mode="settings">
+            <img src="icons/settings.svg" width="30" alt="Ustawienia">
+        </button>
+    </stauts-bar>
+
     <script src="app.js"></script>
     <script>
         if('serviceWorker' in navigator) {
