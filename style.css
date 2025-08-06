@@ -1,179 +1,330 @@
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-            
-        }
+.color1 {color: #000f22;}
+.color2 {color: #003a5c;}
+.color3 {color: #006fa4;}
+.color4 {color: #00b0f6;}
+.color5 {color: #00feff;}
+.color5 {color: #f4f4f9}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    
+}
+
+h1 {
+    font-size: 3em;
+    color: #2c3e50;
+}
+
+header {
+    background-color: #000f22; /* color1 */
+    color: #ecf0f1;
+    text-align: center;
+    padding: 10px;
+}
+
+.header-menu {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    
+}
+
+.menu-button {
+    background-color: #306181;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    max-width: 250px;
+    height: 43px;
+    font-size: 1em;
+    flex-grow: 1; 
+    flex-basis: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.menu-button:hover {
+    background-color: #163346;
+}
+
+.menu-button.start_color {
+    background-color: #006fa4;
+}
+
+.menu-button.active {
+    background-color: #006fa4;
+    transform: scale(1.1), scale(1.0);
+}
+
+.menu-button.inactive {
+    background-color: #3c5c7c;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    padding-bottom: 70px
+}
+
+.ex-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+}
+
+.control-button {
+    background-color: #006fa4;
+    
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    max-width: 250px;
+    height: 43px;
+    font-size: 1em;
+    flex-grow: 1; 
+    flex-basis: 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    
+}
+
+.control-button:hover {
+    background-color: #163346;
+}
+
+.control-button:active {
+    background-color: #306181;
+    transform: scale(1.1), scale(1.0);
+}
+
+.mode-section {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.mode-section.active-mode {
+    display: block;
+}
         
-        h1 {
-            font-size: 3em;
-            color: #2c3e50;
-        }
-        
-        header {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-            text-align: center;
-            padding: 10px;
-        }
+.status-bar{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    /* stopka na dole */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #000f22; /* color1 */
+    color: white;
+    
+    box-sizing: border-box;
+}
 
-        .header-menu {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            
-        }
+.settings-button {
+    background-color: rgb(58, 137, 216);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 1000;
+    width: 43px;
+    height: 43px;
+    display: flex;
+    justify-content: center; 
+    align-items: center;    
+    padding: 5px;             
+}
 
-        .menu-button {
-            background-color: #306181;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 12px 24px;
-            max-width: 250px;
-            height: 43px;
-            font-size: 1em;
-            flex-grow: 1; 
-            flex-basis: 0;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
+.settings-button:active{
+    background-color: #163346;
+    box-shadow: #333;
+    transform: scale(1.1), scale(1.0);
+}
 
-        .menu-button:hover {
-            background-color: #163346;
-        }
+.setting-button svg{
+    max-width: 30px;
+    max-height: 30px;
+    width: 100%;
+    height: auto;
+}
 
-        .menu-button.start_color {
-            background-color: rgb(58, 137, 216);
-        }
+.score-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
 
-        .menu-button.active {
-            background-color: #3498db;
-            transform: scale(1.1), scale(1.0);
-        }
+.score-box {
+    min-width: 43px;
+    min-height: 43px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+}
 
-        .menu-button.inactive {
-            background-color: #3c5c7c;
-        }
-        
-        .main-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-grow: 1;
-            padding: 20px;
-            box-sizing: border-box;
-            padding-bottom: 70px
-        }
+.correct-answers {
+    background-color: #25af5f;
+}
 
+.wrong-answers {
+    background-color: #e74c3c;
+}
 
-        .mode-section {
-            width: 100%;
-            max-width: 800px;
-            text-align: center;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
-        
-        .mode-section.active-mode {
-            display: block;
-        }
-                
-        .status-bar{
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            /* stopka na dole */
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding-left: 10px;
-            padding-right: 10px;
-            background-color: #34495e;
-            color: white;
-            
-            box-sizing: border-box;
-        }
+.answer-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(6, auto);;
+    gap: 10px;
 
-        .settings-button {
-            background-color: rgb(58, 137, 216);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            margin-left: auto;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            z-index: 1000;
-            width: 43px;
-            height: 43px;
-            display: flex;
-            justify-content: center; 
-            align-items: center;    
-            padding: 5px;             
-        }
+    justify-content: center;
+}
 
-        .settings-button:active{
-            background-color: #163346;
-            transform: scale(1.1), scale(1.0);
-        }
+.last-input-group {
+    padding: 10px;
+}
 
-        .setting-button svg{
-            max-width: 30px;
-            max-height: 30px;
-            width: 100%;
-            height: auto;
-        }
-
-        .score-container {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .score-box {
-            min-width: 43px;
-            min-height: 43px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.5em;
-            font-weight: bold;
-            
-            
-        }
-
-        .correct-answers {
-            background-color: #25af5f;
-        }
-
-        .wrong-answers {
-            background-color: #e74c3c;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            .container {
-                padding: 10px;
-            }
-            .score-box{
-                font-size: 1.2em;
-            }
+.interval-container {
+    gap: 10px;
+    justify-content: center;
+}
 
 
-        }
+.interval-input-group {
+    display: flex;
+    justify-content: center;
+}
 
+.combined-element {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.toggle-checkbox {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    padding: 0;
+}
+
+.interval-name-button {
+    border: none;
+    min-width: 110px;
+    height: 48px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.toggle-checkbox:checked + .combined-element .interval-name-button:hover {
+    background-color: #c7c7c7;
+}
+
+.toggle-checkbox:checked + .combined-element .interval-name-button:active {
+    background-color: #a5a4a4;
+}
+
+.icon-enable {
+    display: none;
+}
+
+.icon-disable {
+    display: block;
+    stroke: #666;
+}
+
+.toggle-checkbox:checked + .combined-element .toggle-button {
+    background-color: #007bff;
+    border-right: 1px solid #007bff;
+}
+
+.toggle-checkbox:checked + .combined-element .icon-enable {
+    display: block;
+    stroke: #fff;
+}
+
+.toggle-checkbox:checked + .combined-element .icon-disable {
+    display: none;
+}
+
+.toggle-checkbox:checked + .combined-element .interval-name-button {
+    background-color: #fff;
+    cursor: pointer;
+    color: #333;
+}
+
+.combined-element .interval-name-button {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+    color: #999;
+}
+
+.interval-name-button:disabled {
+    cursor: not-allowed;
+    background-color: #f0f0f0;
+    color: #999;
+}
+
+.centered-grid-item {
+    grid-column: 1 / -1;
+    justify-self: center;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    .container {
+        padding: 10px;
+    }
+    .score-box{
+        font-size: 1.2em;
+    }
+
+    
+}
