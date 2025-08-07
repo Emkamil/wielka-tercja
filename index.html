@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tercja Wielka</title>
     <meta name="description" content="Pomoc przy nauce rozpoznawania interwałów i akordów"/>
-    
     <link rel="icon" href="icons/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
@@ -13,295 +12,349 @@
 <body>
     <header>
         <nav class="header-menu">
-            <button class="menu-button start_color active" data-mode="interwaly">Interwały</button>
-            <button class="menu-button start_color" data-mode="akordy">Akordy</button>
+            <button class="menu-button active" data-mode="interwaly">Interwały</button>
+            <button class="menu-button" data-mode="akordy">Akordy</button>
         </nav>
     </header>
 
     <main class="main-content">
-        <sections id="start_container" class="mode-section active-mode">
-            <h2>Wybierz tryb ćwiczeń z menu</h2>
-        </sections>
-
-        <section id="interwaly" class="mode-section">
+        <section id="interwaly" class="mode-section active-mode">
             <div class="ex-control">
                 <button class="control-button" id="start-button">START</button>
                 <button class="control-button" id="next-button">NASTĘPNY</button>
                 <button class="control-button" id="reset-button">RESETUJ</button>
             </div>
-            <div class="interval-container">
-                <div class="answer-container">
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="pryma-czysta" id="checkbox-pryma-czysta" />
-                        <div class="combined-element">
-                            <label for="checkbox-pryma-czysta" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="pryma-czysta">
-                                <span class="interval-name-label">1</span>
-                            </button>
-                        </div>
+            <div class="options-container interval-container">
+                <!-- Pryma czysta (1) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="pryma-czysta" id="checkbox-pryma-czysta"/>
+                    <div class="combined-element">
+                        <label for="checkbox-pryma-czysta" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="pryma-czysta">
+                            <span class="option-label">1</span>
+                        </button>
                     </div>
-
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="sekunda-mala" id="checkbox-sekunda-mala" />
-                        <div class="combined-element">
-                            <label for="checkbox-sekunda-mala" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="sekunda-mala">
-                                <span class="interval-name-label">2&gt;</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="sekunda-wielka" id="checkbox-sekunda-wielka" />
-                        <div class="combined-element">
-                            <label for="checkbox-sekunda-wielka" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="sekunda-wielka">
-                                <span class="interval-name-label">2</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="tercja-mala" id="checkbox-tercja-mala" />
-                        <div class="combined-element">
-                            <label for="checkbox-tercja-mala" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>    
-                            </label>
-                            <button class="interval-name-button" data-interval="tercja-mala">
-                                <span class="interval-name-label">3&gt;</span>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="tercja-wielka" id="checkbox-tercja-wielka" />
-                        <div class="combined-element">
-                            <label for="checkbox-tercja-wielka" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="tercja-wielka">
-                                <span class="interval-name-label">3</span>
-                            </button>
-                        </div>
-                    </div>
-                
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="kwarta-czysta" id="checkbox-kwarta-czysta" />
-                        <div class="combined-element">
-                            <label for="checkbox-kwarta-czysta" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="kwarta-czysta">
-                                <span class="interval-name-label">4</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="tryton" id="checkbox-tryton" />
-                        <div class="combined-element">
-                            <label for="checkbox-tryton" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="tryton">
-                                <span class="interval-name-label">4&lt; <b>/</b> 5&gt;</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="kwinta-czysta" id="checkbox-kwinta-czysta" />
-                        <div class="combined-element">
-                            <label for="checkbox-kwinta-czysta" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="kwinta-czysta">
-                                <span class="interval-name-label">5</span>
-                            </button>
-                        </div>
-                    </div>    
-
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="seksta-mala" id="checkbox-seksta-mala" />
-                        <div class="combined-element">
-                            <label for="checkbox-seksta-mala" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="seksta-mala">
-                                <span class="interval-name-label">6&gt;</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="seksta-wielka" id="checkbox-seksta-wielka" />
-                        <div class="combined-element">
-                            <label for="checkbox-seksta-wielka" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="seksta-wielka">
-                                <span class="interval-name-label">6</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="septyma-mala" id="checkbox-septyma-mala" />
-                        <div class="combined-element">
-                            <label for="checkbox-septyma-mala" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="septyma-mala">
-                                <span class="interval-name-label">7</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="interval-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="septyma-wielka" id="checkbox-septyma-wielka" />
-                        <div class="combined-element">
-                            <label for="checkbox-septyma-wielka" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button" data-interval="septyma-wielka">
-                                <span class="interval-name-label">7&lt;</span>
-                            </button>
-                        </div>
-                    </div>
-
                 </div>
-                <div class="interval-input-group last-input-group">
-                        <input type="checkbox" class="toggle-checkbox" data-interval="oktawa-czysta" id="checkbox-oktawa-czysta" />
-                        <div class="combined-element">
-                            <label for="checkbox-oktawa-czysta" class="toggle-button">
-                                <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-                                </svg>
-                                <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                                    <line x1="23" y1="9" x2="17" y2="15"></line>
-                                    <line x1="17" y1="9" x2="23" y2="15"></line>
-                                </svg>
-                            </label>
-                            <button class="interval-name-button centered-grid-item" data-interval="oktawa-czysta">
-                                <span class="interval-name-label">8</span>
-                            </button>
-                        </div>
+                <!-- Sekunda mała (2-) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="sekunda-mala" id="checkbox-sekunda-mala" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-sekunda-mala" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="sekunda-mala">
+                            <span class="option-label">2&gt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Sekunda wielka (2) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="sekunda-wielka" id="checkbox-sekunda-wielka" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-sekunda-wielka" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="sekunda-wielka">
+                            <span class="option-label">2</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Tercja mała (3>) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="tercja-mala" id="checkbox-tercja-mala" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-tercja-mala" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="tercja-mala">
+                            <span class="option-label">3&gt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Tercja wielka (3) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="tercja-wielka" id="checkbox-tercja-wielka" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-tercja-wielka" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="tercja-wielka">
+                            <span class="option-label">3</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Kwarta czysta (4) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="kwarta-czysta" id="checkbox-kwarta-czysta" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-kwarta-czysta" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="kwarta-czysta">
+                            <span class="option-label">4</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Tryton (4+) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="tryton" id="checkbox-tryton" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-tryton" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="tryton">
+                            <span class="option-label">4&gt; <b>/</b> 5&lt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Kwinta czysta (5) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="kwinta-czysta" id="checkbox-kwinta-czysta" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-kwinta-czysta" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="kwinta-czysta">
+                            <span class="option-label">5</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Seksta mała (6>) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="seksta-mala" id="checkbox-seksta-mala" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-seksta-mala" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="seksta-mala">
+                            <span class="option-label">6&gt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Seksta wielka (6) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="seksta-wielka" id="checkbox-seksta-wielka" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-seksta-wielka" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="seksta-wielka">
+                            <span class="option-label">6</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Septyma mała (7-) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="septyma-mala" id="checkbox-septyma-mala" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-septyma-mala" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="septyma-mala">
+                            <span class="option-label">7</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Septyma wielka (7) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="septyma-wielka" id="checkbox-septyma-wielka" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-septyma-wielka" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="septyma-wielka">
+                            <span class="option-label">7&lt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Oktawa czysta (8) -->
+                <div class="option-group centered-grid-item">
+                    <input type="checkbox" class="toggle-checkbox" data-option="oktawa-czysta" id="checkbox-oktawa-czysta" checked/>
+                    <div class="combined-element">
+                        <label for="checkbox-oktawa-czysta" class="toggle-button">
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="oktawa-czysta">
+                            <span class="option-label">8</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
-        
+
         <section id="akordy" class="mode-section">
             <h2>Tryb: Akordy</h2>
-            
+             <div class="options-container akordy-container">
+                 <!-- Tutaj umieszczasz przyciski dla akordów, używając tych samych klas -->
+                 <div class="option-group">
+                     <input type="checkbox" class="toggle-checkbox " data-option="akord-dur" id="checkbox-akord-dur" />
+                     <div class="combined-element">
+                         <label for="checkbox-akord-dur" class="toggle-button">
+                             <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                         </label>
+                         <button class="option-button" data-option="akord-dur">
+                             <span class="option-label">Akord durowy</span>
+                         </button>
+                     </div>
+                 </div>
+                 <div class="option-group">
+                     <input type="checkbox" class="toggle-checkbox" data-option="akord-mol" id="checkbox-akord-mol" />
+                     <div class="combined-element">
+                         <label for="checkbox-akord-mol" class="toggle-button">
+                             <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                         </label>
+                         <button class="option-button" data-option="akord-mol">
+                             <span class="option-label">Akord molowy</span>
+                         </button>
+                     </div>
+                 </div>
+                 <div class="option-group centered-grid-item">
+                     <input type="checkbox" class="toggle-checkbox" data-option="akordy-wszystkie" id="checkbox-akordy-wszystkie" />
+                     <div class="combined-element">
+                         <label for="checkbox-akordy-wszystkie" class="toggle-button">
+                             <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                            </svg>
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                <line x1="23" y1="9" x2="17" y2="15"></line>
+                                <line x1="17" y1="9" x2="23" y2="15"></line>
+                            </svg>
+                         </label>
+                         <button class="option-button" data-option="akordy-wszystkie">
+                             <span class="option-label">Wszystkie akordy</span>
+                         </button>
+                     </div>
+                 </div>
+             </div>
         </section>
     </main>
-    <stauts-bar class="status-bar">
-        <p>Wynik: </p>
 
+    <footer class="status-bar">
+        <p>Wynik: </p>
         <div class="score-container">
             <div class="score-box correct-answers">
                 <span id="correct-count">0</span>
@@ -310,17 +363,12 @@
                 <span id="wrong-count">0</span>
             </div>
         </div>
-
-        <button class="settings-button" data-mode="settings">
-            <img src="icons/settings.svg" width="30" alt="Ustawienia">
+        <button class="settings-button theme-toggle">
+            <svg class="theme-icon light" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="theme-icon dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </button>
-    </stauts-bar>
+    </footer>
 
     <script src="app.js"></script>
-    <script>
-        if('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js', { scope: '/' });
-        }
-    </script>
 </body>
 </html>

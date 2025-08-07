@@ -1,27 +1,76 @@
-.color1 {color: #000f22;}
-.color2 {color: #003a5c;}
-.color3 {color: #006fa4;}
-.color4 {color: #00b0f6;}
-.color5 {color: #00feff;}
-.color5 {color: #f4f4f9}
+/* Paleta kolorów */
+:root {
+    --bg-color-light: #f4f4f9;
+    --text-color-light: #333;
+    --header-bg-light: #000f22;
+    --header-text-light: #ecf0f1;
+    --menu-button-bg-light: #306181;
+    --menu-button-text-light: white;
+    --menu-button-hover-light: #163346;
+    --menu-button-active-light: #006fa4;
+    --mode-section-bg-light: #f0f0f0;
+    --border-color-light: #ccc;
+    --toggle-button-bg-light: #f0f0f0;
+    --toggle-button-hover-light: #e0e0e0;
+    --toggle-button-checked-bg-light: #007bff;
+    --toggle-button-checked-border-light: #007bff;
+    --option-button-bg-light: #fff;
+    --option-button-hover-light: #e8e8e8;
+    --option-button-active-light: #c7c7c7;
+    --option-button-disabled-bg-light: #f0f0f0;
+    --option-button-disabled-text-light: #999;
+    --score-correct-bg-light: #25af5f;
+    --score-wrong-bg-light: #e74c3c;
+    --control-button-bg-light: #006fa4;
+    --control-button-hover-light: #163346;
+    --control-button-active-light: #306181;
+}
 
+/* Ciemny motyw */
+body.dark-theme {
+    --bg-color-light: #2c2c2c;
+    --text-color-light: #f0f0f0;
+    --header-bg-light: #121212;
+    --header-text-light: #e0e0e0;
+    --menu-button-bg-light: #3b3b3b;
+    --menu-button-text-light: #e0e0e0;
+    --menu-button-hover-light: #505050;
+    --menu-button-active-light: #007bff;
+    --mode-section-bg-light: #3a3a3a;
+    --border-color-light: #555;
+    --toggle-button-bg-light: #444;
+    --toggle-button-hover-light: #555;
+    --toggle-button-checked-bg-light: #0099ff;
+    --toggle-button-checked-border-light: #0099ff;
+    --option-button-bg-light: #444;
+    --option-button-hover-light: #555;
+    --option-button-active-light: #666;
+    --option-button-disabled-bg-light: #333;
+    --option-button-disabled-text-light: #777;
+    --score-correct-bg-light: #4caf50;
+    --score-wrong-bg-light: #f44336;
+    --control-button-bg-light: #0099ff;
+    --control-button-hover-light: #007acc;
+    --control-button-active-light: #006699;
+}
+
+/* Globalne style */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-    
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h1 {
-    font-size: 3em;
-    color: #2c3e50;
+h1, h2 {
+    color: var(--text-color-light);
 }
 
 header {
-    background-color: #000f22; /* color1 */
-    color: #ecf0f1;
+    background-color: var(--header-bg-light);
+    color: var(--header-text-light);
     text-align: center;
     padding: 10px;
 }
@@ -29,41 +78,54 @@ header {
 .header-menu {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    /* Zmiana odstępu z 10px na 15px */
+    gap: 15px; 
     flex-wrap: wrap;
-    
+    /* Dodaj maksymalną szerokość, aby menu nie było za szerokie na dużych ekranach */
+    max-width: 600px;
+    /* Wyśrodkuj kontener menu na stronie */
+    margin: 0 auto;
 }
 
 .menu-button {
-    background-color: #306181;
-    color: white;
+    background-color: var(--menu-button-bg-light);
+    color: var(--menu-button-text-light);
     border: none;
     border-radius: 5px;
     padding: 12px 24px;
-    max-width: 250px;
-    height: 43px;
+    /* Usuń max-width, aby umożliwić rozciąganie */
     font-size: 1em;
-    flex-grow: 1; 
-    flex-basis: 0;
+    flex-grow: 1; /* Sprawia, że przyciski rozciągają się, aby wypełnić dostępną przestrzeń */
+    flex-basis: auto; /* Zmodyfikuj bazową wielkość, aby lepiej współpracowała z flex-grow */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.menu-button:hover {
-    background-color: #163346;
-}
-
-.menu-button.start_color {
-    background-color: #006fa4;
-}
-
 .menu-button.active {
-    background-color: #006fa4;
-    transform: scale(1.1), scale(1.0);
+    background-color: var(--menu-button-active-light);
+    transform: scale(1.1);
 }
-
-.menu-button.inactive {
-    background-color: #3c5c7c;
+/* Przycisk aktywowany na komputerze */
+@media (min-width: 601px) {
+    .header-menu {
+        gap: 20px;
+    }
+    .menu-button {
+        flex-grow: 1;
+        flex-basis: auto;
+    }
+    .menu-button:hover {
+        background-color: var(--menu-button-hover-light);
+    }
+    .menu-button.active:hover {
+        background-color: var(--menu-button-active-light);
+    }
+    .menu-button:hover {
+        background-color: var(--menu-button-hover-light);
+    }
+    .menu-button.active:hover {
+        background-color: var(--menu-button-active-light);
+    }
 }
 
 .main-content {
@@ -73,7 +135,7 @@ header {
     flex-grow: 1;
     padding: 20px;
     box-sizing: border-box;
-    padding-bottom: 70px
+    padding-bottom: 70px;
 }
 
 .ex-control {
@@ -85,8 +147,7 @@ header {
 }
 
 .control-button {
-    background-color: #006fa4;
-    
+    background-color: var(--control-button-bg-light);
     color: white;
     border: none;
     border-radius: 5px;
@@ -98,16 +159,15 @@ header {
     flex-basis: 0;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    
 }
 
 .control-button:hover {
-    background-color: #163346;
+    background-color: var(--control-button-hover-light);
 }
 
 .control-button:active {
-    background-color: #306181;
-    transform: scale(1.1), scale(1.0);
+    background-color: var(--control-button-active-light);
+    transform: scale(1.1);
 }
 
 .mode-section {
@@ -115,65 +175,56 @@ header {
     max-width: 400px;
     text-align: center;
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: var(--mode-section-bg-light);
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: none;
+    transition: background-color 0.3s ease;
 }
 
 .mode-section.active-mode {
     display: block;
 }
-        
-.status-bar{
+
+/* Pasek statusu */
+.status-bar {
     display: flex;
     gap: 10px;
     align-items: center;
-    /* stopka na dole */
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #000f22; /* color1 */
-    color: white;
-    
+    padding: 10px;
+    background-color: var(--header-bg-light);
+    color: var(--header-text-light);
     box-sizing: border-box;
+    transition: background-color 0.3s ease;
 }
 
 .settings-button {
-    background-color: rgb(58, 137, 216);
-    color: white;
+    background-color: transparent;
     border: none;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-left: auto;
-    font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    z-index: 1000;
-    width: 43px;
-    height: 43px;
-    display: flex;
-    justify-content: center; 
-    align-items: center;    
-    padding: 5px;             
+    margin-left: auto;
 }
 
-.settings-button:active{
-    background-color: #163346;
-    box-shadow: #333;
-    transform: scale(1.1), scale(1.0);
+.settings-button .theme-icon {
+    width: 30px;
+    height: 30px;
+    stroke: var(--header-text-light);
+    transition: stroke 0.3s ease;
 }
 
-.setting-button svg{
-    max-width: 30px;
-    max-height: 30px;
-    width: 100%;
-    height: auto;
+.settings-button .theme-icon.dark {
+    display: none;
+}
+body.dark-theme .settings-button .theme-icon.dark {
+    display: block;
+}
+body.dark-theme .settings-button .theme-icon.light {
+    display: none;
 }
 
 .score-container {
@@ -195,42 +246,39 @@ header {
 }
 
 .correct-answers {
-    background-color: #25af5f;
+    background-color: var(--score-correct-bg-light);
 }
 
 .wrong-answers {
-    background-color: #e74c3c;
+    background-color: var(--score-wrong-bg-light);
 }
 
-.answer-container {
+/* Uniwersalny układ dla opcji (interwały i akordy) */
+.options-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(6, auto);;
-    gap: 10px;
-
-    justify-content: center;
-}
-
-.last-input-group {
-    padding: 10px;
-}
-
-.interval-container {
     gap: 10px;
     justify-content: center;
+    grid-template-columns: 1fr;
 }
 
+/* W widoku szerokim - 2 kolumny */
+@media (min-width: 350px) {
+    .options-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
 
-.interval-input-group {
+.option-group {
     display: flex;
     justify-content: center;
 }
 
 .combined-element {
     display: flex;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color-light);
     border-radius: 8px;
     overflow: hidden;
+    transition: border-color 0.3s ease;
 }
 
 .toggle-checkbox {
@@ -246,12 +294,13 @@ header {
     align-items: center;
     width: 48px;
     height: 48px;
-    background-color: #f0f0f0;
+    background-color: var(--toggle-button-bg-light);
     cursor: pointer;
     padding: 0;
+    transition: background-color 0.3s ease;
 }
 
-.interval-name-button {
+.option-button {
     border: none;
     min-width: 110px;
     height: 48px;
@@ -259,14 +308,7 @@ header {
     display: flex;
     align-items: center;
     transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.toggle-checkbox:checked + .combined-element .interval-name-button:hover {
-    background-color: #c7c7c7;
-}
-
-.toggle-checkbox:checked + .combined-element .interval-name-button:active {
-    background-color: #a5a4a4;
+    padding: 0 16px;
 }
 
 .icon-enable {
@@ -275,56 +317,60 @@ header {
 
 .icon-disable {
     display: block;
-    stroke: #666;
+    stroke: var(--text-color-light);
+    transition: stroke 0.3s ease;
 }
 
+/* Style po zaznaczeniu checkboxa */
 .toggle-checkbox:checked + .combined-element .toggle-button {
-    background-color: #007bff;
-    border-right: 1px solid #007bff;
+    background-color: var(--toggle-button-checked-bg-light);
+    border-right: 1px solid var(--toggle-button-checked-border-light);
 }
 
 .toggle-checkbox:checked + .combined-element .icon-enable {
     display: block;
-    stroke: #fff;
+    stroke: white;
 }
 
 .toggle-checkbox:checked + .combined-element .icon-disable {
     display: none;
 }
 
-.toggle-checkbox:checked + .combined-element .interval-name-button {
-    background-color: #fff;
+.toggle-checkbox:checked + .combined-element .option-button {
+    background-color: var(--option-button-bg-light);
     cursor: pointer;
-    color: #333;
+    color: var(--text-color-light);
 }
 
-.combined-element .interval-name-button {
-    background-color: #f0f0f0;
+/* Style gdy checkbox jest odznaczony (przycisk zablokowany) */
+.combined-element .option-button {
+    background-color: var(--option-button-disabled-bg-light);
     cursor: not-allowed;
-    color: #999;
+    color: var(--option-button-disabled-text-light);
 }
 
-.interval-name-button:disabled {
+.option-button:disabled {
     cursor: not-allowed;
-    background-color: #f0f0f0;
-    color: #999;
+    background-color: var(--option-button-disabled-bg-light);
+    color: var(--option-button-disabled-text-light);
 }
 
+/* Styl dla interakcji na urządzeniach stacjonarnych */
+@media (hover: hover) and (pointer: fine) {
+    .toggle-checkbox:checked + .combined-element .option-button:hover {
+        background-color: var(--option-button-hover-light);
+    }
+}
+/* Zapobiegamy utrzymywaniu się stanu active na urządzeniach dotykowych */
+.option-button:active {
+    background-color: var(--option-button-active-light) !important;
+    transform: none;
+}
+.option-button:focus {
+    outline: none;
+}
+/* Styl dla wyśrodkowanego elementu siatki */
 .centered-grid-item {
     grid-column: 1 / -1;
     justify-self: center;
-}
-
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2em;
-    }
-    .container {
-        padding: 10px;
-    }
-    .score-box{
-        font-size: 1.2em;
-    }
-
-    
 }
