@@ -21,7 +21,7 @@
     --option-button-disabled-text-light: #999;
     --score-correct-bg-light: #25af5f;
     --score-wrong-bg-light: #e74c3c;
-    --control-button-bg-light: #006fa4;
+    --control-button-bg-light: #006696;
     --control-button-hover-light: #163346;
     --control-button-active-light: #306181;
 }
@@ -49,7 +49,7 @@ body.dark-theme {
     --option-button-disabled-text-light: #777;
     --score-correct-bg-light: #4caf50;
     --score-wrong-bg-light: #f44336;
-    --control-button-bg-light: #0099ff;
+    --control-button-bg-light: #006696;
     --control-button-hover-light: #007acc;
     --control-button-active-light: #006699;
 }
@@ -144,6 +144,8 @@ header {
     align-items: center;
     padding: 10px;
     gap: 10px;
+    padding-bottom: 30px;
+    padding-top: 0px;
 }
 
 .control-button {
@@ -161,14 +163,12 @@ header {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.control-button:hover {
-    background-color: var(--control-button-hover-light);
-}
-
 .control-button:active {
     background-color: var(--control-button-active-light);
     transform: scale(1.1);
 }
+
+
 
 .mode-section {
     width: 100%;
@@ -186,7 +186,6 @@ header {
     display: block;
 }
 
-/* Pasek statusu */
 .status-bar {
     display: flex;
     gap: 10px;
@@ -203,11 +202,14 @@ header {
     transition: background-color 0.3s ease;
 }
 
+
+
 .settings-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     margin-left: auto;
+    padding-right: 10px;
 }
 
 .settings-button .theme-icon {
@@ -359,6 +361,9 @@ body.dark-theme .settings-button .theme-icon.light {
 @media (hover: hover) and (pointer: fine) {
     .toggle-checkbox:checked + .combined-element .option-button:hover {
         background-color: var(--option-button-hover-light);
+    }
+    .control-button:hover {
+        background-color: var(--control-button-hover-light);
     }
 }
 /* Zapobiegamy utrzymywaniu się stanu active na urządzeniach dotykowych */
