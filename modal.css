@@ -1,0 +1,92 @@
+/*
+ * modal.css
+ *
+ * Copyright (c) 2025 Kamil Machowski
+ *
+ * Ten projekt jest objęty licencją CC BY-NC 4.0
+ *
+ */
+
+.modal {
+    display: none; /* Domyślnie ukryte */
+    position: fixed;
+    z-index: 2000; /* Zapewnia, że jest na wierzchu */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.visible {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--mode-section-bg-light);
+    color: var(--text-color-light);
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    width: 90%; /* Zapewnia odstęp od krawędzi na urządzeniach mobilnych */
+    max-width: 500px; /* Ogranicza szerokość na większych ekranach */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+}
+
+/* Zapytanie mediów dla urządzeń mobilnych */
+@media (max-width: 600px) {
+    .modal-content {
+        margin: 20px;
+    }
+}
+
+body.dark-theme .modal-content {
+    background-color: var(--mode-section-bg-light);
+    color: var(--text-color-light);
+}
+
+.close-button {
+    color: var(--text-color-light);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--header-bg-light);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+    .github-link {
+        margin-top: 20px;
+        text-align: center;
+    }
+    .github-button {
+        background-color: #333;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .github-button:hover {
+        background-color: #555;
+    }
+    body.dark-theme .github-button {
+        background-color: #555;
+    }
+    body.dark-theme .github-button:hover {
+        background-color: #777;
+    }

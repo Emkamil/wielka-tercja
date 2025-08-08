@@ -1,4 +1,12 @@
-/* Paleta kolorów */
+/*
+ * style.css
+ *
+ * Copyright (c) 2025 Kamil Machowski
+ *
+ * Ten projekt jest objęty licencją CC BY-NC 4.0
+ *
+ */
+
 :root {
     --bg-color-light: #f4f4f9;
     --text-color-light: #333;
@@ -24,6 +32,8 @@
     --control-button-bg-light: #006696;
     --control-button-hover-light: #163346;
     --control-button-active-light: #306181;
+    --footer-icon-light-color: #ecf0f1;
+    --footer-icon-hover-bg-light: rgba(255, 255, 255, 0.1);
 }
 
 /* Ciemny motyw */
@@ -52,6 +62,8 @@ body.dark-theme {
     --control-button-bg-light: #006696;
     --control-button-hover-light: #007acc;
     --control-button-active-light: #006699;
+    --footer-icon-light-color: #e0e0e0;
+    --footer-icon-hover-bg-light: rgba(255, 255, 255, 0.1);
 }
 
 /* Globalne style */
@@ -78,12 +90,9 @@ header {
 .header-menu {
     display: flex;
     justify-content: center;
-    /* Zmiana odstępu z 10px na 15px */
     gap: 15px; 
     flex-wrap: wrap;
-    /* Dodaj maksymalną szerokość, aby menu nie było za szerokie na dużych ekranach */
     max-width: 600px;
-    /* Wyśrodkuj kontener menu na stronie */
     margin: 0 auto;
 }
 
@@ -93,10 +102,9 @@ header {
     border: none;
     border-radius: 5px;
     padding: 12px 24px;
-    /* Usuń max-width, aby umożliwić rozciąganie */
     font-size: 1em;
-    flex-grow: 1; /* Sprawia, że przyciski rozciągają się, aby wypełnić dostępną przestrzeń */
-    flex-basis: auto; /* Zmodyfikuj bazową wielkość, aby lepiej współpracowała z flex-grow */
+    flex-grow: 1;
+    flex-basis: auto;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -104,28 +112,6 @@ header {
 .menu-button.active {
     background-color: var(--menu-button-active-light);
     transform: scale(1.1);
-}
-/* Przycisk aktywowany na komputerze */
-@media (min-width: 601px) {
-    .header-menu {
-        gap: 20px;
-    }
-    .menu-button {
-        flex-grow: 1;
-        flex-basis: auto;
-    }
-    .menu-button:hover {
-        background-color: var(--menu-button-hover-light);
-    }
-    .menu-button.active:hover {
-        background-color: var(--menu-button-active-light);
-    }
-    .menu-button:hover {
-        background-color: var(--menu-button-hover-light);
-    }
-    .menu-button.active:hover {
-        background-color: var(--menu-button-active-light);
-    }
 }
 
 .main-content {
@@ -168,8 +154,6 @@ header {
     transform: scale(1.1);
 }
 
-
-
 .mode-section {
     width: 100%;
     max-width: 400px;
@@ -186,88 +170,12 @@ header {
     display: block;
 }
 
-.status-bar {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 10px;
-    background-color: var(--header-bg-light);
-    color: var(--header-text-light);
-    box-sizing: border-box;
-    transition: background-color 0.3s ease;
-}
-
-
-
-.settings-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-left: auto;
-    padding-right: 10px;
-}
-
-.settings-button .theme-icon {
-    width: 30px;
-    height: 30px;
-    stroke: var(--header-text-light);
-    transition: stroke 0.3s ease;
-}
-
-.settings-button .theme-icon.dark {
-    display: none;
-}
-body.dark-theme .settings-button .theme-icon.dark {
-    display: block;
-}
-body.dark-theme .settings-button .theme-icon.light {
-    display: none;
-}
-
-.score-container {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
-.score-box {
-    min-width: 43px;
-    min-height: 43px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 1.5em;
-    font-weight: bold;
-}
-
-.correct-answers {
-    background-color: var(--score-correct-bg-light);
-}
-
-.wrong-answers {
-    background-color: var(--score-wrong-bg-light);
-}
-
 /* Uniwersalny układ dla opcji (interwały i akordy) */
 .options-container {
     display: grid;
     gap: 10px;
     justify-content: center;
     grid-template-columns: 1fr;
-}
-
-/* W widoku szerokim - 2 kolumny */
-@media (min-width: 350px) {
-    .options-container {
-        grid-template-columns: 1fr 1fr;
-    }
 }
 
 .option-group {
@@ -357,23 +265,10 @@ body.dark-theme .settings-button .theme-icon.light {
     color: var(--option-button-disabled-text-light);
 }
 
-/* Styl dla interakcji na urządzeniach stacjonarnych */
-@media (hover: hover) and (pointer: fine) {
-    .toggle-checkbox:checked + .combined-element .option-button:hover {
-        background-color: var(--option-button-hover-light);
-    }
-    .control-button:hover {
-        background-color: var(--control-button-hover-light);
-    }
-}
-/* Zapobiegamy utrzymywaniu się stanu active na urządzeniach dotykowych */
-.option-button:active {
-    background-color: var(--option-button-active-light) !important;
-    transform: none;
-}
 .option-button:focus {
     outline: none;
 }
+
 /* Styl dla wyśrodkowanego elementu siatki */
 .centered-grid-item {
     grid-column: 1 / -1;

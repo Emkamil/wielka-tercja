@@ -1,18 +1,24 @@
+/*
+* app.js
+*
+* Copyright (c) 2025 Kamil Machowski
+*
+* Ten projekt jest objęty licencją CC BY-NC 4.0
+*
+*/
+
 const menuButtons = document.querySelectorAll('.menu-button');
 const modeSections = document.querySelectorAll('.mode-section');
 
-// Obiekt do przechowywania stanu aktywności każdego interwału
+// obiekt do przechowywania stanu aktywności każdego interwału
 const intervalStates = {};
 
 menuButtons.forEach(button => {
     button.addEventListener('click', () => {
-        // Resetowanie stylów dla wszystkich przycisków
         menuButtons.forEach(btn => {
             btn.classList.remove('active', 'inactive', 'start_color');
         });
-        // Ustawienie aktywnego stylu dla klikniętego przycisku
         button.classList.add('active');
-        // Ustawienie nieaktywnego stylu dla pozostałych przycisków
         menuButtons.forEach(btn => {
             if (!btn.classList.contains('active')) {
                 btn.classList.add('inactive');
@@ -38,18 +44,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
-    // Sprawdzanie, czy motyw jest zapisany w pamięci podręcznej przeglądarki
+    // Sprawdzanie czy motyw jest zapisany w pamięci podręcznej przeglądarki
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         body.classList.add('dark-theme');
     }
 
-    // Dodanie nasłuchiwania na kliknięcie przycisku
     themeToggleBtn.addEventListener('click', () => {
-        // Przełączanie klasy 'dark-theme' na elemencie body
         body.classList.toggle('dark-theme');
 
-        // Zapisywanie preferencji w pamięci podręcznej
         if (body.classList.contains('dark-theme')) {
             localStorage.setItem('theme', 'dark');
         } else {
@@ -57,13 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ----------------------
-    // Logika przełączania interwałów (istniejący kod)
-    // ----------------------
+
     const toggleCheckboxes = document.querySelectorAll('.toggle-checkbox');
     const intervalButtons = document.querySelectorAll('.option-button');
 
-    // inicjalizacja stanów
     toggleCheckboxes.forEach(checkbox => {
         const intervalName = checkbox.dataset.interval;
         intervalStates[intervalName] = checkbox.checked;
@@ -103,4 +103,49 @@ const resetButton = document.getElementById('reset-button');
 
 resetButton.addEventListener('click', () => {
     scoreReset();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const settingsButton = document.getElementById('settings-button');
+    const infoButton = document.getElementById('info-button');
+    const settingsModal = document.getElementById('settings-modal');
+    const infoModal = document.getElementById('info-modal');
+
+    function openModal(modal) {
+        modal.classList.add('visible');
+    }
+
+    function closeModal(modal) {
+        modal.classList.remove('visible');
+    }
+
+    settingsButton.addEventListener('click', () => {
+        openModal(settingsModal);
+    });
+
+    infoButton.addEventListener('click', () => {
+        openModal(infoModal);
+    });
+
+    const closeButtons = document.querySelectorAll('.close-button');
+    closeButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            closeModal(e.target.closest('.modal'));
+        });
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) {
+            closeModal(e.target);
+        }
+    });
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const visibleModal = document.querySelector('.modal.visible');
+            if (visibleModal) {
+                closeModal(visibleModal);
+            }
+        }
+    });
 });

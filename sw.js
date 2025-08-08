@@ -1,3 +1,12 @@
+/*
+* sw.js
+*
+* Copyright (c) 2025 Kamil Machowski
+*
+* Ten projekt jest objęty licencją CC BY-NC 4.0
+*
+*/
+
 const CACHE_NAME = `Wielka_tercja`;
 const repoPath = '/wielka-tercja/';
 
@@ -13,7 +22,9 @@ self.addEventListener('install', event => {
       repoPath + 'manifest.json',
       repoPath + 'icons/icon512.png',
       repoPath + 'icons/icon.ico',
-      repoPath + 'icons/settings.svg'
+      repoPath + 'footer.css',
+      repoPath + 'media.css',
+      repoPath + 'modal.css'
     ]);
   })());
 });

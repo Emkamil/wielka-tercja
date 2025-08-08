@@ -1,0 +1,59 @@
+/*
+ * media.css
+ *
+ * Copyright (c) 2025 Kamil Machowski
+ *
+ * Ten projekt jest objęty licencją CC BY-NC 4.0
+ *
+ */
+
+@media (min-width: 601px) {
+    .header-menu {
+        gap: 20px;
+    }
+    .menu-button {
+        flex-grow: 1;
+        flex-basis: auto;
+    }
+}
+
+@media (min-width: 350px) {
+    .options-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .menu-button:hover {
+        background-color: var(--menu-button-hover-light);
+    }
+    .menu-button.active:hover {
+        background-color: var(--menu-button-active-light);
+    }
+    .control-button:hover {
+        background-color: var(--control-button-hover-light);
+    }
+    .toggle-checkbox:checked + .combined-element .option-button:hover {
+        background-color: var(--option-button-hover-light);
+    }
+    .settings-button:hover {
+        background-color: var(--control-button-hover-light);
+    }
+
+
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .menu-button:active {
+        background-color: var(--menu-button-active-light);
+        transform: scale(1.1);
+    }
+    .control-button:active {
+        background-color: var(--control-button-active-light);
+        transform: scale(1.1);
+    }
+    .settings-button:active {
+        background-color: var(--control-button-active-light);
+        transform: scale(1.2);
+    }
+}
