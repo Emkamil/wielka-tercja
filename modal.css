@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2025 Kamil Machowski
  *
- * Ten projekt jest objęty licencją CC BY-NC 4.0
+ * Ten projekt jest objęty licencją  CC BY-ND 4.0
  *
  */
 
@@ -36,6 +36,7 @@
     max-width: 500px; /* Ogranicza szerokość na większych ekranach */
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     transition: background-color 0.3s ease;
+    gap: 10px;
 }
 
 /* Zapytanie mediów dla urządzeń mobilnych */
@@ -90,3 +91,17 @@ body.dark-theme .modal-content {
     body.dark-theme .github-button:hover {
         background-color: #777;
     }
+
+.initial-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Nowy kontener dla przycisku, wyśrodkowany do prawej strony */
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    
+}

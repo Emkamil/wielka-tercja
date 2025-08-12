@@ -3,7 +3,7 @@
 *
 * Copyright (c) 2025 Kamil Machowski
 *
-* Ten projekt jest objęty licencją CC BY-NC 4.0
+* Ten projekt jest objęty licencją  CC BY-ND 4.0
 *
 */
 
@@ -24,7 +24,8 @@ self.addEventListener('install', event => {
       repoPath + 'icons/icon.ico',
       repoPath + 'footer.css',
       repoPath + 'media.css',
-      repoPath + 'modal.css'
+      repoPath + 'modal.css',
+      repoPath + 'interval.js'
     ]);
   })());
 });

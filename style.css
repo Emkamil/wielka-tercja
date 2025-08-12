@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2025 Kamil Machowski
  *
- * Ten projekt jest objęty licencją CC BY-NC 4.0
+ * Ten projekt jest objęty licencją  CC BY-ND 4.0
  *
  */
 
@@ -18,13 +18,13 @@
     --menu-button-active-light: #006fa4;
     --mode-section-bg-light: #f0f0f0;
     --border-color-light: #ccc;
-    --toggle-button-bg-light: #f0f0f0;
+    --toggle-button-bg-light: #a8a8a8;
     --toggle-button-hover-light: #e0e0e0;
     --toggle-button-checked-bg-light: #007bff;
     --toggle-button-checked-border-light: #007bff;
     --option-button-bg-light: #fff;
-    --option-button-hover-light: #e8e8e8;
-    --option-button-active-light: #c7c7c7;
+    --option-button-hover-light: #c9c9c9;
+    --option-button-active-light: #b4b4b4;
     --option-button-disabled-bg-light: #f0f0f0;
     --option-button-disabled-text-light: #999;
     --score-correct-bg-light: #25af5f;
@@ -34,6 +34,10 @@
     --control-button-active-light: #306181;
     --footer-icon-light-color: #ecf0f1;
     --footer-icon-hover-bg-light: rgba(255, 255, 255, 0.1);
+    --select-bg-light: #fff;
+    --select-text-light: var(--text-color-light);
+    --select-border-light: var(--border-color-light);
+    --select-arrow-light: var(--text-color-light);
 }
 
 /* Ciemny motyw */
@@ -64,6 +68,10 @@ body.dark-theme {
     --control-button-active-light: #006699;
     --footer-icon-light-color: #e0e0e0;
     --footer-icon-hover-bg-light: rgba(255, 255, 255, 0.1);
+    --select-bg-light: #444;
+    --select-text-light: var(--text-color-light);
+    --select-border-light: var(--border-color-light);
+    --select-arrow-light: var(--text-color-light);
 }
 
 /* Globalne style */
@@ -221,6 +229,11 @@ header {
     padding: 0 16px;
 }
 
+.toggle-checkbox:checked + .combined-element .option-button:active {
+        background-color: var(--option-button-active-light);
+        transform: scale(1.01); /* Delikatne powiększenie */
+}
+
 .icon-enable {
     display: none;
 }
@@ -273,4 +286,30 @@ header {
 .centered-grid-item {
     grid-column: 1 / -1;
     justify-self: center;
+}
+
+.settings-options select {
+    appearance: none; /* Ukrywa domyślny styl strzałki */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--select-bg-light);
+    color: var(--select-text-light);
+    border: 1px solid var(--select-border-light);
+    border-radius: 5px;
+    padding: 8px 30px 8px 10px;
+    font-size: 1em;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    width: auto;
+    position: relative;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="%23333" stroke-width="2" d="M7 10l5 5 5-5"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    
+}
+
+body.dark-theme .settings-options select {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="%23f4f4f4" stroke-width="2" d="M7 10l5 5 5-5"/></svg>');
 }

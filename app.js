@@ -3,9 +3,67 @@
 *
 * Copyright (c) 2025 Kamil Machowski
 *
-* Ten projekt jest objęty licencją CC BY-NC 4.0
+* Ten projekt jest objęty licencją  CC BY-ND 4.0
 *
 */
+const scoreReset = () => {
+    const correctCount = document.querySelector('#correct-count');
+    correctCount.textContent = '0'
+    const wrongCount = document.querySelector('#wrong-count');
+    wrongCount.textContent = '0'
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const initialSettingsModal = document.getElementById('initial-settings-modal');
+    const acceptButton = document.getElementById('accept-settings-button');
+
+    const instrumentSelect = document.getElementById('initial-instrument');
+    const playingModeSelect = document.getElementById('initial-playing-mode');
+    const themeSelect = document.getElementById('initial-theme');
+    
+    // sprawdzanie i ładowania ustawień
+    function loadSettings() {
+        const savedInstrument = localStorage.getItem('instrument');
+        const savedPlayingMode = localStorage.getItem('playingMode');
+        const savedTheme = localStorage.getItem('theme');
+        
+        if (!savedInstrument || !savedPlayingMode || !savedTheme) {
+            // wymaganie zgody jeśli nie ma ustawień
+            initialSettingsModal.classList.add('visible');
+        } else {
+            // załaduj zapisane ustawienia
+            
+            console.log("Ustawienia załadowane z pamięci: ", savedInstrument, savedPlayingMode, savedTheme);
+            document.body.classList.add(savedTheme);
+        }
+    }
+
+    // Funkcja do zapisywania ustawień i zamykania modala
+    function saveAndCloseModal() {
+        const selectedInstrument = instrumentSelect.value;
+        const selectedPlayingMode = playingModeSelect.value;
+        const selectedTheme = themeSelect.value;
+
+        // Zapisz ustawienia w localStorage
+        localStorage.setItem('instrument', selectedInstrument);
+        localStorage.setItem('playingMode', selectedPlayingMode);
+        localStorage.setItem('theme', selectedTheme);
+        
+        // Zastosuj motyw od razu
+        document.body.classList.add(selectedTheme);
+        
+        // Zamknij modal
+        initialSettingsModal.classList.remove('visible');
+        
+        console.log("Ustawienia zostały zapisane.");
+    }
+
+    // Uruchomienie ładowania ustawień
+    loadSettings();
+
+    // Dodanie nasłuchiwania na przycisk akceptacji
+    acceptButton.addEventListener('click', saveAndCloseModal);
+});
 
 const menuButtons = document.querySelectorAll('.menu-button');
 const modeSections = document.querySelectorAll('.mode-section');
@@ -44,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const body = document.body;
 
-    // Sprawdzanie czy motyw jest zapisany w pamięci podręcznej przeglądarki
+    // czy motyw jest zapisany w pamięci podręcznej przeglądarki
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         body.classList.add('dark-theme');
@@ -89,21 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-//resetowanie wyniku po zmianie trybów
-const scoreReset = () => {
-    const correctCount = document.querySelector('#correct-count');
-    correctCount.textContent = '0'
-    const wrongCount = document.querySelector('#wrong-count');
-    wrongCount.textContent = '0'
-};
 
-const startButton = document.getElementById('start-button');
-const nextButton = document.getElementById('next-button');
-const resetButton = document.getElementById('reset-button');
 
-resetButton.addEventListener('click', () => {
-    scoreReset();
-});
+const intervalButton = document.getElementById('interval-mode');
+    const chordButton = document.getElementById('chords-mode');
+
+    chordButton.addEventListener('click', () => {
+        scoreReset();
+    });
+
+    intervalButton.addEventListener('click', () => {
+        scoreReset();
+    });
 
 document.addEventListener('DOMContentLoaded', () => {
     const settingsButton = document.getElementById('settings-button');
@@ -135,11 +190,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     window.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal')) {
+        if (e.target.classList.contains('modal') && e.target.id !== 'initial-settings-modal') {
             closeModal(e.target);
         }
     });
-
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             const visibleModal = document.querySelector('.modal.visible');

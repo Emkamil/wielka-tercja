@@ -16,8 +16,8 @@
 <body>
     <header>
         <nav class="header-menu">
-            <button class="menu-button active" data-mode="interwaly">Interwały</button>
-            <button class="menu-button" data-mode="akordy">Akordy</button>
+            <button class="menu-button active" id="interval-mode" data-mode="interwaly">Interwały</button>
+            <button class="menu-button" id="chords-mode" data-mode="akordy">Akordy</button>
         </nav>
     </header>
 
@@ -359,7 +359,43 @@
             </div>
         </div>
     </div>
+    <div id="initial-settings-modal" class="modal">
+        <div class="modal-content initial-modal-content">
+            <h2>Witaj na stronie!</h2>
+            <p>Wybierz początkowe ustawienia aplikacji. Strona zapisuje Twoje ustawienia w pamięci przeglądarki, aby zapewnić spójne działanie aplikacji.</p>
+            
+            <div class="settings-options">
+                <label for="initial-instrument">Instrument:</label>
+                <select id="initial-instrument" name="instrument">
+                    <option value="piano">Fortepian</option>
+                    <option value="guitar">Gitara</option>
+                </select>
+            </div>
+
+            <div class="settings-options">
+                <label for="initial-playing-mode">Sposób grania:</label>
+                <select id="initial-playing-mode" name="playing-mode">
+                    <option value="harmonic">Harmoniczny</option>
+                    <option value="melodic">Melodyczny</option>
+                </select>
+            </div>
+
+            <div class="settings-options">
+                <label for="initial-theme">Motyw:</label>
+                <select id="initial-theme" name="theme">
+                    <option value="light-theme">Jasny</option>
+                    <option value="dark-theme">Ciemny</option>
+                </select>
+            </div>
+
+            <div class="modal-buttons">
+                <button id="accept-settings-button" class="control-button">Akceptuj i rozpocznij</button>
+            </div>
+        </div>
+    </div>
+    <script scr="interval.js"></script>
     <script src="app.js"></script>
+    
     <script>
         if('serviceWorker' in navigator) {
         navigator.serviceWorker.register('sw.js', { scope: '/' });

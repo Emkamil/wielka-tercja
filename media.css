@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2025 Kamil Machowski
  *
- * Ten projekt jest objęty licencją CC BY-NC 4.0
+ * Ten projekt jest objęty licencją  CC BY-ND 4.0
  *
  */
 
@@ -33,14 +33,13 @@
     .control-button:hover {
         background-color: var(--control-button-hover-light);
     }
-    .toggle-checkbox:checked + .combined-element .option-button:hover {
-        background-color: var(--option-button-hover-light);
-    }
+    
     .settings-button:hover {
         background-color: var(--control-button-hover-light);
     }
-
-
+    .toggle-checkbox:checked + .combined-element .option-button:hover {
+        background-color: var(--option-button-hover-light); /* Delikatne powiększenie */
+    }
 }
 
 @media (hover: none) and (pointer: coarse) {
@@ -54,6 +53,6 @@
     }
     .settings-button:active {
         background-color: var(--control-button-active-light);
-        transform: scale(1.2);
+        transform: scale(1.1);
     }
 }
