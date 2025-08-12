@@ -6,13 +6,7 @@
 * Ten projekt jest objęty licencją  CC BY-ND 4.0
 *
 */
-console.log("start");
-const scoreReset = () => {
-    const correctCount = document.querySelector('#correct-count');
-    correctCount.textContent = '0';
-    const wrongCount = document.querySelector('#wrong-count');
-    wrongCount.textContent = '0';
-};
+console.log("interval.js start");
 
 const startButton = document.getElementById('start-button');
 const nextButton = document.getElementById('next-button');
@@ -25,5 +19,13 @@ resetButton.addEventListener('click', () => {
 
 nextButton.addEventListener('click', () => {
     const wrongCount = document.querySelector('#wrong-count');
-    console.log( parseInt(wrongCount) + 1);
+    const stringValue = wrongCount.textContent;
+    const intValue = parseInt(stringValue, 10);
+    const result = intValue + 1;
+    wrongCount.textContent = result;
+});
+
+startButton.addEventListener('click', () => {
+    scoreReset();
+    console.log("odtwarzanie interwału nie działa");
 });

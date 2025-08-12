@@ -6,11 +6,13 @@
 * Ten projekt jest objęty licencją  CC BY-ND 4.0
 *
 */
+console.log("app.js started");
+
 const scoreReset = () => {
     const correctCount = document.querySelector('#correct-count');
-    correctCount.textContent = '0'
+    correctCount.textContent = '0';
     const wrongCount = document.querySelector('#wrong-count');
-    wrongCount.textContent = '0'
+    wrongCount.textContent = '0';
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -203,3 +205,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+console.log("koniec");
