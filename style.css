@@ -1,4 +1,6 @@
 /*
+* Wielka Tercja
+*
  * style.css
  *
  * Copyright (c) 2025 Kamil Machowski
@@ -38,6 +40,25 @@
     --select-text-light: var(--text-color-light);
     --select-border-light: var(--border-color-light);
     --select-arrow-light: var(--text-color-light);
+    --correct-button-bg: #4CAF50;
+    --correct-button-text: #fff;
+    --correct-button-border: #388E3C;
+
+    --correct-button-bg-light: #66BB6A;
+    --correct-button-text-light: #1B5E20;
+    --correct-button-border-light: #43A047;
+
+    --wrong-button-bg-light: #EF5350;
+    --wrong-button-text-light: #B71C1C;
+    --wrong-button-border-light: #E53935;
+
+    --correct-button-bg: var(--correct-button-bg-light);
+    --correct-button-text: var(--correct-button-text-light);
+    --correct-button-border: var(--correct-button-border-light);
+
+    --wrong-button-bg: var(--wrong-button-bg-light);
+    --wrong-button-text: var(--wrong-button-text-light);
+    --wrong-button-border: var(--wrong-button-border-light);
 }
 
 /* Ciemny motyw */
@@ -72,6 +93,22 @@ body.dark-theme {
     --select-text-light: var(--text-color-light);
     --select-border-light: var(--border-color-light);
     --select-arrow-light: var(--text-color-light);
+
+    --correct-button-bg-dark: #4CAF50;
+    --correct-button-text-dark: #ffffff;
+    --correct-button-border-dark: #66BB6A;
+
+    --wrong-button-bg-dark: #F44336;
+    --wrong-button-text-dark: #ffffff;
+    --wrong-button-border-dark: #EF5350;
+
+    --correct-button-bg: var(--correct-button-bg-dark);
+    --correct-button-text: var(--correct-button-text-dark);
+    --correct-button-border: var(--correct-button-border-dark);
+
+    --wrong-button-bg: var(--wrong-button-bg-dark);
+    --wrong-button-text: var(--wrong-button-text-dark);
+    --wrong-button-border: var(--wrong-button-border-dark);
 }
 
 /* Globalne style */
@@ -178,7 +215,6 @@ header {
     display: block;
 }
 
-/* Uniwersalny układ dla opcji (interwały i akordy) */
 .options-container {
     display: grid;
     gap: 10px;
@@ -231,7 +267,7 @@ header {
 
 .toggle-checkbox:checked + .combined-element .option-button:active {
         background-color: var(--option-button-active-light);
-        transform: scale(1.01); /* Delikatne powiększenie */
+        transform: scale(1.01);
 }
 
 .icon-enable {
@@ -244,7 +280,6 @@ header {
     transition: stroke 0.3s ease;
 }
 
-/* Style po zaznaczeniu checkboxa */
 .toggle-checkbox:checked + .combined-element .toggle-button {
     background-color: var(--toggle-button-checked-bg-light);
     border-right: 1px solid var(--toggle-button-checked-border-light);
@@ -265,7 +300,6 @@ header {
     color: var(--text-color-light);
 }
 
-/* Style gdy checkbox jest odznaczony (przycisk zablokowany) */
 .combined-element .option-button {
     background-color: var(--option-button-disabled-bg-light);
     cursor: not-allowed;
@@ -282,14 +316,13 @@ header {
     outline: none;
 }
 
-/* Styl dla wyśrodkowanego elementu siatki */
 .centered-grid-item {
     grid-column: 1 / -1;
     justify-self: center;
 }
 
 .settings-options select {
-    appearance: none; /* Ukrywa domyślny styl strzałki */
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
     background-color: var(--select-bg-light);
@@ -312,4 +345,32 @@ header {
 
 body.dark-theme .settings-options select {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="%23f4f4f4" stroke-width="2" d="M7 10l5 5 5-5"/></svg>');
+}
+
+.option-button.correct {
+    background-color: var(--correct-button-bg) !important;
+    color: var(--correct-button-text) !important;
+    border-color: var(--correct-button-border) !important;
+    animation: none;
+}
+
+.option-button.wrong {
+    background-color: var(--wrong-button-bg) !important;
+    color: var(--wrong-button-text) !important;
+    border-color: var(--wrong-button-border) !important;
+    animation: shake 0.5s;
+}
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.disabled {
+  color: #a0a0a0 !important;
+  background-color: #e0e0e0 !important;
+  cursor: not-allowed  !important;
+  pointer-events: none;
 }

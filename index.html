@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="copyright" content="Copyright (c) 2025 Kamil Machowski">
     <title>Tercja Wielka</title>
-    <meta name="description" content="Pomoc przy nauce rozpoznawania interwałów i akordów"/>
+    <meta name="description" content="Aplikacja przeglądarkowa pomagająca w nauce rozpoznawania interwałów i akordów."/>
+    <meta property="og:title" content="Wielka Tercja">
+    <meta property="og:description" content="Aplikacja przeglądarkowa pomagająca w nauce rozpoznawania interwałów i akordów.">
+    <meta property="og:image" content="https://emkamil.github.io/wielka-tercja/icons/icon512.png">
     <link rel="icon" href="icons/icon.ico" type="image/x-icon">
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
@@ -26,7 +29,7 @@
             <div class="ex-control">
                 <button class="control-button" id="start-button">START</button>
                 <button class="control-button" id="next-button">NASTĘPNY</button>
-                <button class="control-button" id="reset-button">RESETUJ</button>
+                <button class="control-button" id="repeat-button">POWTÓRZ</button>
             </div>
             <div class="options-container interval-container">
                 <!-- Pryma czysta (1) -->
@@ -324,72 +327,119 @@
         </button>
     </div>
 </footer>
+
 <div id="settings-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Ustawienia</h2>
-            <p>Ustawienia nie są jeszcze dostępne.</p>
+    <div class="modal-content initial-modal-content">
+        <h2>Ustawienia</h2>
+        <div class="settings-options">
+            <label for="initial-instrument">Instrument:</label>
+            <select id="initial-instrument" name="instrument">
+                <option value="piano">Fortepian</option>
+            </select>
+        </div>
+        <div class="settings-options">
+            <label for="initial-playing-mode">Sposób grania:</label>
+            <select id="initial-playing-mode" name="playing-mode">
+                <option value="harmonic">Harmoniczny</option>
+                <option value="melodic">Melodyczny</option>
+            </select>
+        </div>
+        <div class="settings-options">
+            <label for="initial-playing-direction">Kierunek gry:</label>
+            <select id="initial-playing-direction" name="playing-direction">
+                <option value="up">W górę</option>
+                <option value="down">W dół</option>
+                <option value="mix-direction">Losowo</option>
+            </select>
+        </div>
+        <div class="settings-options">
+            <label for="initial-theme">Motyw:</label>
+            <select id="initial-theme" name="theme">
+                <option value="light-theme">Jasny</option>
+                <option value="dark-theme">Ciemny</option>
+            </select>
+        </div>
+        <div class="modal-buttons">
+            <button id="accept-settings-button" class="save-setting-button">Zapisz ustawienia</button>
         </div>
     </div>
+</div>
 
-    <div id="info-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Informacje</h2>
-            <p>
-                Aplikacja została stworzona w celach edukacyjnych, aby pomóc w nauce rozpoznawania interwałów i akordów.
-            </p>
+<div id="info-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Wielka Tercja - Informacje</h2>
+        <p>
+            Aplikacja została stworzona w celach edukacyjnych, aby pomóc w nauce rozpoznawania interwałów i akordów.
+        </p>
 
-            <h3>Autor</h3>
-            <p>
-                <strong>Kamil Machowski</strong>
-            </p>
+        <h3>Autor</h3>
+        <p>
+            <strong>Kamil Machowski</strong> - uczeń I LO im. M. Kromera w Gorlicach oraz ZPSM w Gorlicach
+        </p>
 
-            <h3>Licencja</h3>
-            <p>
-                Ta aplikacja jest objęta licencją <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-ND 4.0</a>.
-            </p>
+        <h3>Licencja</h3>
+        <p>
+            Ta aplikacja jest objęta licencją <a href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener noreferrer">CC BY-ND 4.0</a>.
+        </p>
 
-            <div class="github-link">
-                <a href="https://github.com/mkamil52020" target="_blank" rel="noopener noreferrer">
-                    <button class="github-button">
-                        Przejdź na GitHub
-                    </button>
-                </a>
-            </div>
+        <div class="github-link">
+            <a href="https://github.com/Emkamil/" target="_blank" rel="noopener noreferrer">
+                <button class="github-button">
+                    Przejdź na GitHub
+                </button>
+            </a>
         </div>
     </div>
-    <div id="initial-settings-modal" class="modal">
-        <div class="modal-content initial-modal-content">
-            <h2>Witaj na stronie!</h2>
-            <p>Wybierz początkowe ustawienia aplikacji. Strona zapisuje Twoje ustawienia w pamięci przeglądarki, aby zapewnić spójne działanie aplikacji.</p>
-            
-            <div class="settings-options">
-                <label for="initial-instrument">Instrument:</label>
-                <select id="initial-instrument" name="instrument">
-                    <option value="piano">Fortepian</option>
-                    <option value="guitar">Gitara</option>
-                </select>
-            </div>
+</div>
+<div id="initial-settings-modal" class="modal">
+    <div class="modal-content initial-modal-content">
+        <h2>Witaj na stronie!</h2>
+        <p>Wybierz początkowe ustawienia aplikacji. Strona zapisuje Twoje ustawienia w pamięci przeglądarki, aby zapewnić spójne działanie aplikacji.<br><br><b>Aplikacja jest w fazie rozwojowej.</b></p>
+        
+        <div class="settings-options">
+            <label for="initial-instrument">Instrument:</label>
+            <select id="first-initial-instrument" name="instrument">
+                <option value="piano">Fortepian</option>
+                <!--<option value="guitar">Gitara</option>-->
+            </select>
+        </div>
 
-            <div class="settings-options">
-                <label for="initial-playing-mode">Sposób grania:</label>
-                <select id="initial-playing-mode" name="playing-mode">
-                    <option value="harmonic">Harmoniczny</option>
-                    <option value="melodic">Melodyczny</option>
-                </select>
-            </div>
+        <div class="settings-options">
+            <label for="initial-playing-mode">Sposób grania:</label>
+            <select id="first-initial-playing-mode" name="playing-mode">
+                <option value="harmonic">Harmoniczny</option>
+                <option value="melodic">Melodyczny</option>
+            </select>
+        </div>
 
-            <div class="settings-options">
-                <label for="initial-theme">Motyw:</label>
-                <select id="initial-theme" name="theme">
-                    <option value="light-theme">Jasny</option>
-                    <option value="dark-theme">Ciemny</option>
-                </select>
-            </div>
+        <div class="settings-options">
+            <label for="initial-playing-direction">Kierunek gry:</label>
+            <select id="first-initial-playing-direction" name="playing-direction">
+                <option value="up">W górę</option>
+                <option value="down">W dół</option>
+                <option value="mix-direction">Losowo</option>
+            </select>
+        </div>
 
+        <div class="settings-options">
+            <label for="initial-theme">Motyw:</label>
+            <select id="first-initial-theme" name="theme">
+                <option value="light-theme">Jasny</option>
+                <option value="dark-theme">Ciemny</option>
+            </select>
+        </div>
+
+        <div class="modal-buttons">
+            <button id="accept-initial-settings-button" class="control-button">Zastosuj  i rozpocznij</button>
+        </div>
+    </div>
+    </div>
+    <div id="custom-alert-modal" class="modal">
+        <div class="modal-content">
+            <p id="custom-alert-message"></p>
             <div class="modal-buttons">
-                <button id="accept-settings-button" class="control-button">Akceptuj i rozpocznij</button>
+                <button id="custom-alert-ok-button" class="save-setting-button">OK</button>
             </div>
         </div>
     </div>

@@ -1,209 +1,430 @@
 /*
-* app.js
+* Wielka Tercja
 *
-* Copyright (c) 2025 Kamil Machowski
-*
-* Ten projekt jest objęty licencją  CC BY-ND 4.0
-*
-*/
+ * app.js
+ *
+ * Copyright (c) 2025 Kamil Machowski
+ *
+ * Ten projekt jest objęty licencją CC BY-ND 4.0
+ *
+ */
 console.log("app.js started");
 
-const scoreReset = () => {
-    const correctCount = document.querySelector('#correct-count');
-    correctCount.textContent = '0';
-    const wrongCount = document.querySelector('#wrong-count');
-    wrongCount.textContent = '0';
+// Global state management
+window.appState = {
+    currentMode: 'interwaly',
+    isInitialized: false,
+    intervalStates: {},
+    isFirstRun: false
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-    const initialSettingsModal = document.getElementById('initial-settings-modal');
-    const acceptButton = document.getElementById('accept-settings-button');
+// Custom alert function
+window.showCustomAlert = function(message) {
+    console.log("Showing custom alert:", message);
+    const modal = document.getElementById('custom-alert-modal');
+    const modalMessage = document.getElementById('custom-alert-message');
+    const okButton = document.getElementById('custom-alert-ok-button');
 
-    const instrumentSelect = document.getElementById('initial-instrument');
-    const playingModeSelect = document.getElementById('initial-playing-mode');
-    const themeSelect = document.getElementById('initial-theme');
+    if (!modal || !modalMessage || !okButton) {
+        console.error("Custom alert elements not found");
+        return;
+    }
+
+    modalMessage.textContent = message;
+    modal.style.display = 'flex';
+
+    const hideModal = () => {
+        console.log("Hiding custom alert");
+        modal.style.display = 'none';
+        modal.removeEventListener('click', hideOnOutsideClick);
+        okButton.removeEventListener('click', hideModal);
+    };
+
+    const hideOnOutsideClick = (event) => {
+        if (event.target === modal) {
+            hideModal();
+        }
+    };
+
+    okButton.addEventListener('click', hideModal);
+    modal.addEventListener('click', hideOnOutsideClick);
+};
+
+// Score management
+const scoreReset = () => {
+    console.log("Resetting score");
+    const correctCount = document.querySelector('#correct-count');
+    const wrongCount = document.querySelector('#wrong-count');
+    if (correctCount) correctCount.textContent = '0';
+    if (wrongCount) wrongCount.textContent = '0';
+};
+
+// Theme management
+const toggleTheme = (theme) => {
+    console.log(`Changing theme to: ${theme}`);
+    document.body.className = theme;
+    localStorage.setItem('theme', theme);
     
-    // sprawdzanie i ładowania ustawień
-    function loadSettings() {
-        const savedInstrument = localStorage.getItem('instrument');
-        const savedPlayingMode = localStorage.getItem('playingMode');
-        const savedTheme = localStorage.getItem('theme');
-        
-        if (!savedInstrument || !savedPlayingMode || !savedTheme) {
-            // wymaganie zgody jeśli nie ma ustawień
-            initialSettingsModal.classList.add('visible');
-        } else {
-            // załaduj zapisane ustawienia
-            
-            console.log("Ustawienia załadowane z pamięci: ", savedInstrument, savedPlayingMode, savedTheme);
-            document.body.classList.add(savedTheme);
-        }
+    // Update theme selector in settings
+    const themeSelector = document.getElementById('initial-theme');
+    if (themeSelector) {
+        themeSelector.value = theme;
+    }
+};
+
+// Settings management
+const loadAndApplySettings = () => {
+    console.log("Loading and applying settings");
+    
+    // Load theme
+    let savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        toggleTheme(savedTheme);
+    } else {
+        // Set default theme
+        toggleTheme('light-theme');
     }
 
-    // Funkcja do zapisywania ustawień i zamykania modala
-    function saveAndCloseModal() {
-        const selectedInstrument = instrumentSelect.value;
-        const selectedPlayingMode = playingModeSelect.value;
-        const selectedTheme = themeSelect.value;
-
-        // Zapisz ustawienia w localStorage
-        localStorage.setItem('instrument', selectedInstrument);
-        localStorage.setItem('playingMode', selectedPlayingMode);
-        localStorage.setItem('theme', selectedTheme);
-        
-        // Zastosuj motyw od razu
-        document.body.classList.add(selectedTheme);
-        
-        // Zamknij modal
-        initialSettingsModal.classList.remove('visible');
-        
-        console.log("Ustawienia zostały zapisane.");
+    // Load playing mode
+    let savedPlayingMode = localStorage.getItem('playingMode');
+    if (savedPlayingMode) {
+        const playingModeSelector = document.getElementById('initial-playing-mode');
+        if (playingModeSelector) playingModeSelector.value = savedPlayingMode;
     }
 
-    // Uruchomienie ładowania ustawień
-    loadSettings();
+    // Load playing direction
+    let savedPlayingDirection = localStorage.getItem('playingDirection');
+    if (savedPlayingDirection) {
+        const playingDirectionSelector = document.getElementById('initial-playing-direction');
+        if (playingDirectionSelector) playingDirectionSelector.value = savedPlayingDirection;
+    }
+};
 
-    // Dodanie nasłuchiwania na przycisk akceptacji
-    acceptButton.addEventListener('click', saveAndCloseModal);
-});
+// Save settings without resetting game
+const saveSettings = () => {
+    console.log("Saving settings");
+    
+    const selectedTheme = document.getElementById('initial-theme').value;
+    toggleTheme(selectedTheme);
 
-const menuButtons = document.querySelectorAll('.menu-button');
-const modeSections = document.querySelectorAll('.mode-section');
+    const selectedPlayingMode = document.getElementById('initial-playing-mode').value;
+    localStorage.setItem('playingMode', selectedPlayingMode);
+    console.log(`Saved playing mode: ${selectedPlayingMode}`);
 
-// obiekt do przechowywania stanu aktywności każdego interwału
-const intervalStates = {};
+    const selectedPlayingDirection = document.getElementById('initial-playing-direction').value;
+    localStorage.setItem('playingDirection', selectedPlayingDirection);
+    console.log(`Saved playing direction: ${selectedPlayingDirection}`);
 
-menuButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        menuButtons.forEach(btn => {
-            btn.classList.remove('active', 'inactive', 'start_color');
-        });
-        button.classList.add('active');
-        menuButtons.forEach(btn => {
-            if (!btn.classList.contains('active')) {
-                btn.classList.add('inactive');
-            }
-        });
-        
-        // przełączanie sekcji
-        const mode = button.dataset.mode;
-        modeSections.forEach(section => {
-            section.classList.remove('active-mode');
-            if (section.id === mode) {
-                section.classList.add('active-mode');
-            }
-        });
+    // Remove active class from option buttons
+    document.querySelectorAll('.option-button.active').forEach(button => {
+        button.classList.remove('active');
     });
-});
+};
 
-document.addEventListener('DOMContentLoaded', () => {
-    // ----------------------
-    // Logika przełączania motywu
-    // ----------------------
+// Modal management
+const openModal = (modal) => {
+    console.log("Opening modal:", modal.id);
+    modal.classList.add('visible');
+};
 
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const body = document.body;
+const closeModal = (modal) => {
+    console.log("Closing modal:", modal.id);
+    modal.classList.remove('visible');
+};
 
-    // czy motyw jest zapisany w pamięci podręcznej przeglądarki
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-theme');
-    }
-
-    themeToggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-theme');
-
-        if (body.classList.contains('dark-theme')) {
-            localStorage.setItem('theme', 'dark');
-        } else {
-            localStorage.setItem('theme', 'light');
-        }
+// Mode switching functionality
+const switchMode = (newMode) => {
+    console.log(`Switching mode from ${window.appState.currentMode} to ${newMode}`);
+    
+    // Update state
+    window.appState.currentMode = newMode;
+    
+    // Update menu buttons
+    document.querySelectorAll('.menu-button').forEach(button => {
+        button.classList.remove('active');
     });
+    
+    const activeButton = document.querySelector(`[data-mode="${newMode}"]`);
+    if (activeButton) {
+        activeButton.classList.add('active');
+    }
+    
+    // Update sections
+    document.querySelectorAll('.mode-section').forEach(section => {
+        section.classList.remove('active-mode');
+    });
+    
+    const activeSection = document.getElementById(newMode);
+    if (activeSection) {
+        activeSection.classList.add('active-mode');
+    }
+    
+    // Reset score when switching modes
+    scoreReset();
+    
+    console.log(`Mode switched to: ${newMode}`);
+};
 
+// Check if this is first run
+const checkFirstRun = () => {
+    const hasSettings = localStorage.getItem('theme') && 
+                       localStorage.getItem('playingMode') && 
+                       localStorage.getItem('playingDirection');
+    
+    window.appState.isFirstRun = !hasSettings;
+    console.log("First run check:", window.appState.isFirstRun);
+    
+    return window.appState.isFirstRun;
+};
 
+// Initialize interval states
+const initializeIntervalStates = () => {
+    console.log("Initializing interval states");
     const toggleCheckboxes = document.querySelectorAll('.toggle-checkbox');
-    const intervalButtons = document.querySelectorAll('.option-button');
-
+    
     toggleCheckboxes.forEach(checkbox => {
-        const intervalName = checkbox.dataset.interval;
-        intervalStates[intervalName] = checkbox.checked;
-
-        // ustawienie początkowego stanu przycisku
-        const associatedButton = document.querySelector(`.option-button[data-interval="${intervalName}"]`);
+        const intervalName = checkbox.dataset.option;
+        window.appState.intervalStates[intervalName] = checkbox.checked;
+        
+        const associatedButton = document.querySelector(`.option-button[data-option="${intervalName}"]`);
         if (associatedButton) {
-            associatedButton.disabled = !intervalStates[intervalName];
+            associatedButton.disabled = !window.appState.intervalStates[intervalName];
         }
     });
+    
+    console.log("Interval states initialized:", window.appState.intervalStates);
+};
 
+// Update interval lock status
+const updateIntervalLockStatus = () => {
+    console.log("Updating interval lock status");
+    const toggleCheckboxes = document.querySelectorAll('.toggle-checkbox');
+    
     toggleCheckboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', (event) => {
-            const intervalName = event.target.dataset.interval;
-            intervalStates[intervalName] = event.target.checked;
-            
-            // zmiana stanu przycisku po kliknięciu
-            const associatedButton = document.querySelector(`.option-button[data-interval="${intervalName}"]`);
-            if (associatedButton) {
-                associatedButton.disabled = !intervalStates[intervalName];
-            }
-        });
+        const intervalName = checkbox.dataset.option;
+        window.appState.intervalStates[intervalName] = checkbox.checked;
+        
+        const associatedButton = document.querySelector(`.option-button[data-option="${intervalName}"]`);
+        if (associatedButton) {
+            associatedButton.disabled = !checkbox.checked;
+            console.log(`Interval ${intervalName} ${checkbox.checked ? 'enabled' : 'disabled'}`);
+        }
     });
-});
+};
 
-
-
-const intervalButton = document.getElementById('interval-mode');
-    const chordButton = document.getElementById('chords-mode');
-
-    chordButton.addEventListener('click', () => {
-        scoreReset();
-    });
-
-    intervalButton.addEventListener('click', () => {
-        scoreReset();
-    });
-
+// Main initialization
 document.addEventListener('DOMContentLoaded', () => {
-    const settingsButton = document.getElementById('settings-button');
-    const infoButton = document.getElementById('info-button');
+    console.log("DOM Content Loaded - initializing app");
+    
+    // Check if this is first run and show initial settings modal
+    if (checkFirstRun()) {
+        console.log("First run detected, showing initial settings modal");
+        const initialModal = document.getElementById('initial-settings-modal');
+        if (initialModal) {
+            openModal(initialModal);
+        }
+    }
+    
+    // Get DOM elements
     const settingsModal = document.getElementById('settings-modal');
     const infoModal = document.getElementById('info-modal');
-
-    function openModal(modal) {
-        modal.classList.add('visible');
+    const settingsButton = document.getElementById('settings-button');
+    const infoButton = document.getElementById('info-button');
+    const themeToggleButton = document.getElementById('theme-toggle');
+    const acceptSettingsButton = document.getElementById('accept-settings-button');
+    const closeModalButtons = document.querySelectorAll('.close-button');
+    const acceptInitialSettingsButton = document.getElementById('accept-initial-settings-button');
+    
+    // Initialize interval states
+    initializeIntervalStates();
+    
+    // Load and apply settings
+    loadAndApplySettings();
+    
+    // Settings button event listener
+    if (settingsButton) {
+        settingsButton.addEventListener('click', () => {
+            console.log("Settings button clicked");
+            openModal(settingsModal);
+        });
+    }
+    
+    // Info button event listener
+    if (infoButton) {
+        infoButton.addEventListener('click', () => {
+            console.log("Info button clicked");
+            openModal(infoModal);
+        });
+    }
+    
+    // Theme toggle button event listener
+    if (themeToggleButton) {
+        themeToggleButton.addEventListener('click', () => {
+            console.log("Theme toggle button clicked");
+            const currentTheme = document.body.className;
+            const newTheme = currentTheme === 'dark-theme' ? 'light-theme' : 'dark-theme';
+            toggleTheme(newTheme);
+        });
+    }
+    
+    // Accept settings button event listener
+    if (acceptSettingsButton) {
+        acceptSettingsButton.addEventListener('click', () => {
+            console.log("Accept settings button clicked");
+            saveSettings();
+            
+            // Close all settings modals
+            closeModal(settingsModal);
+            const initialModal = document.getElementById('initial-settings-modal');
+            if (initialModal && initialModal.classList.contains('visible')) {
+                closeModal(initialModal);
+                window.appState.isFirstRun = false;
+            }
+        });
     }
 
-    function closeModal(modal) {
-        modal.classList.remove('visible');
+    // Accept initial settings button event listener
+    if (acceptInitialSettingsButton) {
+        acceptInitialSettingsButton.addEventListener('click', () => {
+            console.log("Accept initial settings button clicked");
+            
+            // Get values from first-time modal
+            const selectedTheme = document.getElementById('first-initial-theme').value;
+            const selectedPlayingMode = document.getElementById('first-initial-playing-mode').value;
+            const selectedPlayingDirection = document.getElementById('first-initial-playing-direction').value;
+            const selectedInstrument = document.getElementById('first-initial-instrument').value;
+            
+            // Save to localStorage
+            toggleTheme(selectedTheme);
+            localStorage.setItem('playingMode', selectedPlayingMode);
+            localStorage.setItem('playingDirection', selectedPlayingDirection);
+            localStorage.setItem('instrument', selectedInstrument);
+            localStorage.setItem('theme', selectedTheme);
+            
+            console.log("Initial settings saved:", {
+                theme: selectedTheme,
+                playingMode: selectedPlayingMode,
+                playingDirection: selectedPlayingDirection,
+                instrument: selectedInstrument
+            });
+            
+            // Update main settings modal selectors
+            const mainThemeSelector = document.getElementById('initial-theme');
+            const mainPlayingModeSelector = document.getElementById('initial-playing-mode');
+            const mainPlayingDirectionSelector = document.getElementById('initial-playing-direction');
+            const mainInstrumentSelector = document.getElementById('initial-instrument');
+            
+            if (mainThemeSelector) mainThemeSelector.value = selectedTheme;
+            if (mainPlayingModeSelector) mainPlayingModeSelector.value = selectedPlayingMode;
+            if (mainPlayingDirectionSelector) mainPlayingDirectionSelector.value = selectedPlayingDirection;
+            if (mainInstrumentSelector) mainInstrumentSelector.value = selectedInstrument;
+
+            // Dodaj tę linijkę, aby po zapisaniu danych odświeżyć stan pola wyboru kierunku gry
+            if (mainPlayingModeSelector && mainPlayingDirectionSelector) {
+                updateDirectionState(mainPlayingModeSelector, mainPlayingDirectionSelector);
+            }
+            
+            // Close initial modal - NAPRAWKA
+            const initialModal = document.getElementById('initial-settings-modal');
+            if (initialModal) {
+                closeModal(initialModal);
+                console.log("Initial settings modal closed");
+            }
+
+            if (mainInstrumentSelector) mainInstrumentSelector.value = selectedInstrument;
+
+            window.appState.isFirstRun = false;
+            console.log("First run completed");
+        });
     }
-
-    settingsButton.addEventListener('click', () => {
-        openModal(settingsModal);
-    });
-
-    infoButton.addEventListener('click', () => {
-        openModal(infoModal);
-    });
-
-    const closeButtons = document.querySelectorAll('.close-button');
-    closeButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            closeModal(e.target.closest('.modal'));
+    
+    // Close button event listeners
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const modal = button.closest('.modal');
+            // Don't allow closing settings modal via close button
+            if (modal && modal.id !== 'settings-modal' && modal.id !== 'initial-settings-modal') {
+                closeModal(modal);
+            }
         });
     });
-
+    
+    // Window click event listener - only for certain modals
     window.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal') && e.target.id !== 'initial-settings-modal') {
-            closeModal(e.target);
+        if (e.target.classList.contains('modal')) {
+            const modalId = e.target.id;
+            // Don't allow closing settings modals by clicking outside
+            if (modalId !== 'settings-modal' && modalId !== 'initial-settings-modal') {
+                closeModal(e.target);
+            }
         }
     });
+    
+    // ESC key event listener
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             const visibleModal = document.querySelector('.modal.visible');
             if (visibleModal) {
-                closeModal(visibleModal);
+                const modalId = visibleModal.id;
+                // Don't allow closing settings modals with ESC
+                if (modalId !== 'settings-modal' && modalId !== 'initial-settings-modal') {
+                    closeModal(visibleModal);
+                }
             }
         }
     });
-});
+    
+    // Mode switching event listeners
+    document.querySelectorAll('.menu-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const mode = button.dataset.mode;
+            if (mode) {
+                switchMode(mode);
+            }
+        });
+    });
+    
+    // Toggle checkbox event listeners
+    document.querySelectorAll('.toggle-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', (event) => {
+            console.log(`Checkbox ${event.target.dataset.option} changed to ${event.target.checked}`);
+            updateIntervalLockStatus();
+        });
+    });
 
-console.log("koniec");
+    // Dodaj to wewnątrz bloku document.addEventListener('DOMContentLoaded', ...);
+    
+    // Obsługa interakcji między polami wyboru - upewnij się, że ten blok jest wewnątrz DOMContentLoaded
+    const playingModeSelector = document.getElementById('initial-playing-mode');
+    const playingDirectionSelector = document.getElementById('initial-playing-direction');
+    const firstPlayingModeSelector = document.getElementById('first-initial-playing-mode');
+    const firstPlayingDirectionSelector = document.getElementById('first-initial-playing-direction');
+
+    const updateDirectionState = (modeSelector, directionSelector) => {
+        const isHarmonic = modeSelector.value === 'harmonic';
+        directionSelector.disabled = isHarmonic;
+        directionSelector.classList.toggle('disabled', isHarmonic);
+    };
+    
+    // Ważne: Zastosuj logikę do obu zestawów pól wyboru
+    if (playingModeSelector && playingDirectionSelector) {
+        // Nasłuchiwanie zmian dla głównego ustawienia
+        playingModeSelector.addEventListener('change', () => {
+            updateDirectionState(playingModeSelector, playingDirectionSelector);
+        });
+        // Ustawienie początkowego stanu przy ładowaniu strony
+        updateDirectionState(playingModeSelector, playingDirectionSelector);
+    }
+    
+    if (firstPlayingModeSelector && firstPlayingDirectionSelector) {
+        // Nasłuchiwanie zmian dla pierwszego uruchomienia
+        firstPlayingModeSelector.addEventListener('change', () => {
+            updateDirectionState(firstPlayingModeSelector, firstPlayingDirectionSelector);
+        });
+        // Ustawienie początkowego stanu przy ładowaniu modalnego okna pierwszych ustawień
+        updateDirectionState(firstPlayingModeSelector, firstPlayingDirectionSelector);
+    }
+    // Mark app as initialized
+    window.appState.isInitialized = true;
+    console.log("App initialization complete");
+});

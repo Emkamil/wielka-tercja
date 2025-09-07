@@ -1,4 +1,6 @@
 /*
+* Wielka Tercja
+*
  * media.css
  *
  * Copyright (c) 2025 Kamil Machowski
@@ -38,7 +40,7 @@
         background-color: var(--control-button-hover-light);
     }
     .toggle-checkbox:checked + .combined-element .option-button:hover {
-        background-color: var(--option-button-hover-light); /* Delikatne powiększenie */
+        background-color: var(--option-button-hover-light);
     }
 }
 
