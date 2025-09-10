@@ -2,13 +2,14 @@
     "lang": "pl-PL",
     "name": "Wielka Tercja",
     "short_name": "Wielka Tercja",
-    "description": "Aplikacja pomagająca w nauce rozpoznawania interwałów i akordów",
+    "description": "Aplikacja pomagająca uczniom w nauce rozpoznawania interwałów i akordów",
     "start_url": "/wielka-tercja/",
     "background_color": "#2c3e50",
     "theme_color": "#2c3e50",
     "orientation": "any",
     "display": "standalone",
-    "app_version": "1.0.0",
+    "$version": "1.0.1",
+    "app_version": "1.0.1",
     "icons": [
         {
             "src": "/icons/icon512.png",
