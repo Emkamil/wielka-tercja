@@ -251,7 +251,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const acceptSettingsButton = document.getElementById('accept-settings-button');
     const closeModalButtons = document.querySelectorAll('.close-button');
     const acceptInitialSettingsButton = document.getElementById('accept-initial-settings-button');
-    
+    const tutorialButton = document.getElementById('tutorial-button');
+
     // Initialize interval states
     initializeIntervalStates();
     
@@ -263,6 +264,21 @@ document.addEventListener('DOMContentLoaded', () => {
         settingsButton.addEventListener('click', () => {
             console.log("Settings button clicked");
             openModal(settingsModal);
+        });
+    }
+
+    if (tutorialButton) {
+        tutorialButton.addEventListener('click', () => {
+            console.log("Tutorial button clicked");
+            const tutorialModal = document.getElementById('tutorial-modal');
+            saveSettings();
+            closeModal(settingsModal);
+            const initialModal = document.getElementById('initial-settings-modal');
+            if (initialModal && initialModal.classList.contains('visible')) {
+                closeModal(initialModal);
+                window.appState.isFirstRun = false;
+            }
+            openModal(tutorialModal);
         });
     }
     

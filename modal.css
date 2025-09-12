@@ -76,29 +76,29 @@
 }
 
 
-    .github-link {
-        margin-top: 20px;
-        text-align: center;
-    }
-    .github-button {
-        background-color: #333;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-size: 1em;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    .github-button:hover {
-        background-color: #555;
-    }
-    body.dark-theme .github-button {
-        background-color: #555;
-    }
-    body.dark-theme .github-button:hover {
-        background-color: #777;
-    }
+.github-link {
+    margin-top: 20px;
+    text-align: center;
+}
+.github-button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.github-button:hover {
+    background-color: #555;
+}
+body.dark-theme .github-button {
+    background-color: #555;
+}
+body.dark-theme .github-button:hover {
+    background-color: #777;
+}
 
 .initial-modal-content {
     display: flex;
@@ -108,7 +108,7 @@
 
 .modal-buttons {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     width: 100%;
     
 }
