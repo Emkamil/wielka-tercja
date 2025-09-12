@@ -131,3 +131,14 @@
 .modal-content.alert .close-button {
     display: none;
 }
+
+.tutorial-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.tutorial-buttons .control-button {
+    flex: 1;
+    max-width: none;
+}

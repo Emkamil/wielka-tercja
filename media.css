@@ -25,7 +25,8 @@
     }
 }
 
-@media (hover: hover) and (pointer: fine) {
+@media (hover: hover) and (pointer: fine) { 
+    /*desktop*/
     .menu-button:hover {
         background-color: var(--menu-button-hover-light);
     }
@@ -42,9 +43,13 @@
     .toggle-checkbox:checked + .combined-element .option-button:hover {
         background-color: var(--option-button-hover-light);
     }
+    .tutorial-image:hover {
+        transform: scale(1.01);
+}
 }
 
 @media (hover: none) and (pointer: coarse) {
+    /*touchscreen*/
     .menu-button:active {
         background-color: var(--menu-button-active-light);
         transform: scale(1.1);
@@ -57,4 +62,8 @@
         background-color: var(--control-button-active-light);
         transform: scale(1.1);
     }
+    .tutorial-image:active {
+        transform: scale(1.02);
+    }
+
 }

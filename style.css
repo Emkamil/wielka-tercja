@@ -374,3 +374,12 @@ body.dark-theme .settings-options select {
   cursor: not-allowed  !important;
   pointer-events: none;
 }
+
+.tutorial-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease-in-out;
+}

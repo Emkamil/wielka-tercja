@@ -212,6 +212,20 @@ const updateIntervalLockStatus = () => {
     });
 };
 
+const checkAndShowTutorial = () => {
+    const tutorialWatchedKey = 'firstTutorialWatched';
+    if (localStorage.getItem(tutorialWatchedKey) === null) {
+        console.log("Tutorial has not been watched. Displaying modal.");
+        const tutorialModal = document.getElementById('tutorial-modal');
+        if (tutorialModal) {
+            openModal(tutorialModal);
+            localStorage.setItem(tutorialWatchedKey, 'yes');
+        }
+    } else {
+        console.log("Tutorial has already been watched.");
+    }
+};
+
 // Main initialization
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Content Loaded - initializing app");
@@ -223,6 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (initialModal) {
             openModal(initialModal);
         }
+    } else {
+        // If it's not the first run, check and show the tutorial
+        checkAndShowTutorial();
     }
     
     // Get DOM elements
@@ -283,7 +300,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Accept initial settings button event listener
     if (acceptInitialSettingsButton) {
         acceptInitialSettingsButton.addEventListener('click', () => {
             console.log("Accept initial settings button clicked");
@@ -319,31 +335,79 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mainPlayingDirectionSelector) mainPlayingDirectionSelector.value = selectedPlayingDirection;
             if (mainInstrumentSelector) mainInstrumentSelector.value = selectedInstrument;
 
-            // Dodaj tę linijkę, aby po zapisaniu danych odświeżyć stan pola wyboru kierunku gry
             if (mainPlayingModeSelector && mainPlayingDirectionSelector) {
                 updateDirectionState(mainPlayingModeSelector, mainPlayingDirectionSelector);
             }
             
-            // Close initial modal - NAPRAWKA
+            // Close initial modal
             const initialModal = document.getElementById('initial-settings-modal');
             if (initialModal) {
                 closeModal(initialModal);
                 console.log("Initial settings modal closed");
-            }
+            }            
 
-            if (mainInstrumentSelector) mainInstrumentSelector.value = selectedInstrument;
+            // Display tutorial after initial setup
+            checkAndShowTutorial();
 
             window.appState.isFirstRun = false;
             console.log("First run completed");
         });
     }
+
+    const tutorialNextButton = document.getElementById('tutorial-next-button');
+    const tutorialPrevButton = document.getElementById('tutorial-prev-button');
+    const closeTutorialButton = document.getElementById('close-tutorial-button');
+    const tutorialSlides = document.querySelectorAll('.tutorial-slide');
+    let currentSlide = 0;
+
+    const showSlide = (n) => {
+        tutorialSlides.forEach(slide => slide.style.display = 'none');
+        if (tutorialSlides[n]) {
+            tutorialSlides[n].style.display = 'block';
+        }
+        
+        // Logic to show/hide navigation buttons
+        tutorialPrevButton.style.display = n === 0 ? 'none' : 'inline-block';
+        tutorialNextButton.style.display = n === tutorialSlides.length - 1 ? 'none' : 'inline-block';
+        closeTutorialButton.style.display = n === tutorialSlides.length - 1 ? 'inline-block' : 'none';
+    };
+
+    if (tutorialNextButton) {
+        tutorialNextButton.addEventListener('click', () => {
+            currentSlide++;
+            if (currentSlide < tutorialSlides.length) {
+                showSlide(currentSlide);
+            }
+        });
+    }
+
+    if (tutorialPrevButton) {
+        tutorialPrevButton.addEventListener('click', () => {
+            currentSlide--;
+            if (currentSlide >= 0) {
+                showSlide(currentSlide);
+            }
+        });
+    }
     
+    if (closeTutorialButton) {
+        closeTutorialButton.addEventListener('click', () => {
+            const tutorialModal = document.getElementById('tutorial-modal');
+            if (tutorialModal) {
+                closeModal(tutorialModal);
+            }
+        });
+    }
+
+    // Call showSlide to set initial state
+    showSlide(currentSlide);
+
     // Close button event listeners
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal');
-            // Don't allow closing settings modal via close button
-            if (modal && modal.id !== 'settings-modal' && modal.id !== 'initial-settings-modal') {
+            // Don't allow closing settings modal or tutorial modal via close button
+            if (modal && modal.id !== 'settings-modal' && modal.id !== 'initial-settings-modal' && modal.id !== 'tutorial-modal') {
                 closeModal(modal);
             }
         });
@@ -351,28 +415,28 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Window click event listener - only for certain modals
     window.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal')) {
-            const modalId = e.target.id;
-            // Don't allow closing settings modals by clicking outside
-            if (modalId !== 'settings-modal' && modalId !== 'initial-settings-modal') {
-                closeModal(e.target);
-            }
+    if (e.target.classList.contains('modal')) {
+        const modalId = e.target.id;
+        // Don't allow closing settings modals or tutorial modal by clicking outside
+        if (modalId !== 'settings-modal' && modalId !== 'initial-settings-modal' && modalId !== 'tutorial-modal') {
+            closeModal(e.target);
         }
+    }
     });
     
     // ESC key event listener
     window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            const visibleModal = document.querySelector('.modal.visible');
-            if (visibleModal) {
-                const modalId = visibleModal.id;
-                // Don't allow closing settings modals with ESC
-                if (modalId !== 'settings-modal' && modalId !== 'initial-settings-modal') {
-                    closeModal(visibleModal);
-                }
+    if (e.key === 'Escape') {
+        const visibleModal = document.querySelector('.modal.visible');
+        if (visibleModal) {
+            const modalId = visibleModal.id;
+            // Don't allow closing settings modals or tutorial modal with ESC
+            if (modalId !== 'settings-modal' && modalId !== 'initial-settings-modal' && modalId !== 'tutorial-modal') {
+                closeModal(visibleModal);
             }
         }
-    });
+    }
+});
     
     // Mode switching event listeners
     document.querySelectorAll('.menu-button').forEach(button => {
