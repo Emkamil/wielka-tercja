@@ -272,13 +272,13 @@ async function playInterval(intervalObject) {
             window.gameState.lastPlayedSecondNote = secondNoteNumber;
         }
         
-        console.log(`Playing notes: ${firstNoteNumber} -> ${secondNoteNumber}`);
+        //console.log(`Playing notes: ${firstNoteNumber} -> ${secondNoteNumber}`);
 
         const settings = getSettingsFromLocal();
         const audioDir = `/wielka-tercja/sounds/${settings.instrument}/${settings.duration}s/`;
 
         let sourceDuration = parseFloat(settings.duration) + 0.2;
-        console.log(sourceDuration)
+        //console.log(sourceDuration)
 
         if(settings.duration == 1){
             sourceDuration = parseFloat(1);
@@ -321,7 +321,7 @@ async function playInterval(intervalObject) {
             source2.start(audioContext.currentTime + sourceDuration);
         }
 
-        console.log(`Interval played successfully. Correct answer: ${window.gameState.lastPlayedInterval}`);
+        //console.log(`Interval played successfully. Correct answer: ${window.gameState.lastPlayedInterval}`);
         
         // Enable buttons after audio starts
         setTimeout(() => {
