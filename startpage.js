@@ -95,14 +95,14 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (selectedMode) {
             case "intervals":
                 // Użyj poprawnej ścieżki (zgodnie z poprzednimi ustaleniami)
-                baseUrl = "/exercises/intervals/index.html"; 
+                baseUrl = "wielka-tercja/exercises/intervals/index.html"; 
                 break;
             case "chords":
-                baseUrl = "/exercises/chords/index.html";
+                baseUrl = "wielka-tercja/exercises/chords/index.html";
                 break;
             default:
                 // Użyj poprawnej ścieżki (zgodnie z poprzednimi ustaleniami)
-                baseUrl = "/exercises/intervals/index.html"; 
+                baseUrl = "wielka-tercja/exercises/intervals/index.html"; 
         }
         
         // 2. DODAJ MOTYW DO CIĄGU ZAPYTAŃ
