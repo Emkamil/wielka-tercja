@@ -4,7 +4,8 @@ Aplikacja webowa została stworzona jako projekt otwarto-źródłowy, w celach e
 
 `Strona jest w trakcie rozwoju.`
 
-Adres strony: https://wielka-tercja.pages.dev/ lub https://emkamil.github.io/wielka-tercja/
+Adres strony: https://emkamil.github.io/wielka-tercja/
+
 
 
 
