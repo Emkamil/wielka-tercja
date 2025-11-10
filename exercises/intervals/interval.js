@@ -275,7 +275,7 @@ async function playInterval(intervalObject) {
         console.log(`Playing notes: ${firstNoteNumber} -> ${secondNoteNumber}`);
 
         const settings = getSettingsFromLocal();
-        const audioDir = `/sounds/${settings.instrument}/${settings.duration}s/`;
+        const audioDir = `/wielka-tercja/sounds/${settings.instrument}/${settings.duration}s/`;
 
         let sourceDuration = parseFloat(settings.duration) + 0.2;
         console.log(sourceDuration)
