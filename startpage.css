@@ -192,9 +192,9 @@ header {
 .mode-btn {
     display: flex;
     padding: 12px 20px; 
-    /* Zmieniono: Upewnij się, że oba są obecne */
+
     justify-content: center; 
-    align-items: center; /* DODAJ TĘ LINIĘ: Wyrównuje w pionie */
+    align-items: center;
     
     border: 1px solid var(--color-border-subtle); 
     border-radius: 12px; 
@@ -208,11 +208,10 @@ header {
 }
 
 .mode-btn:disabled {
-    opacity: 0.6; /* Wyszara przycisk, czyniąc go półprzezroczystym */
-    cursor: not-allowed; /* Ustawia kursor "zakazu" */
-    
-    /* Zresetowanie efektów interaktywnych, żeby nie reagował na hover */
-    background-color: var(--disabled-btn); /* Utrzymuje tło domyślne */
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    background-color: var(--disabled-btn);
     border-color: var(--color-border-subtle); 
     box-shadow: none; 
 }
@@ -309,17 +308,6 @@ header {
 }
 
 /*Modale*/
-
-/*
-* Wielka Tercja
-*
- * modal.css
- *
- * Copyright (c) 2025 Kamil Machowski
- *
- * Ten projekt jest objęty licencją  CC BY-ND 4.0
- *
- */
 
 .modal {
     display: none;
@@ -457,4 +445,5 @@ body.dark-theme {
 .tutorial-buttons .control-button {
     flex: 1;
     max-width: none;
+
 }
