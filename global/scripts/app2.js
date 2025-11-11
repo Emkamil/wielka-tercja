@@ -11,7 +11,7 @@
 
 console.log("app2.js loaded");
 
-// Global state management
+
 window.appState = {
     currentMode: 'interwaly',
     isInitialized: false,
@@ -174,7 +174,6 @@ const loadAndApplySettings = () => {
     }
 };
 
-/*odczytanie ustawień z URL*/
 function urlSplit() {
   const params = new URLSearchParams(window.location.search);
   const argumenty = {};
@@ -186,18 +185,15 @@ function urlSplit() {
   return argumenty;
 }
 
-// Użycie:
 const argumentsURL = urlSplit();
 
 console.log(argumentsURL);
 
 const kluczeUstawien = ['instrument', 'duration', 'theme', 'playingMode'];
 
-// Sprawdź, czy URL zawiera jakieś parametry (argumenty)
 if (Object.keys(argumentsURL).length > 0) {
     console.log("Znaleziono argumenty w URL. Zapisywanie i aplikowanie ustawień...");
     
-    // 1. Zapisz ustawienia z URL do localStorage
     kluczeUstawien.forEach(klucz => {
         const wartosc = argumentsURL[klucz];
         
@@ -207,12 +203,9 @@ if (Object.keys(argumentsURL).length > 0) {
         }
     });
 
-    // 2. NATYCHMIAST ZAŁADUJ I ZASTOSUJ USTAWIENIA NA STRONIE
-    // Wywołujemy istniejącą w app.js funkcję:
     loadAndApplySettings();
     console.log("Ustawienia załadowane i zastosowane ze zmienionych wartości localStorage.");
 
-    // 3. Wyczyść URL po zapisaniu ustawień (zalecane)
     window.history.replaceState(null, '', window.location.pathname);
     console.log("Parametry URL zostały usunięte z paska adresu.");
 }
@@ -221,7 +214,6 @@ if (Object.keys(argumentsURL).length > 0) {
 document.addEventListener('DOMContentLoaded', () => {
     console.log("DOM Content Loaded - initializing start page");
 
-    // Check if this is first run and show initial settings modal
     /*if (checkFirstRun()) {
         console.log("First run detected, showing initial settings modal");
         const initialModal = document.getElementById('initial-settings-modal');
@@ -229,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
             openModal(initialModal);
         }
     } else {
-        // If it's not the first run, check and show the tutorial
+        // if it's not the first run, check and show the tutorial
         checkAndShowTutorial();
     }*/
 
@@ -245,7 +237,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initializeIntervalStates();
     
-    // Load and apply settings
     loadAndApplySettings();
 
     // ------------------------------------------------------------------
@@ -282,14 +273,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-    // Kliknięcie przycisku info otwiera modal
+    // Kliknięcie info otwiera modal
     if (infoButton && infoModal) {
         infoButton.addEventListener('click', () => {
             openModal(infoModal);
         });
     }
 
-    // Kliknięcie przycisku zamykania (x)
+    // Kliknięcie (x)
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal');
@@ -299,7 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Kliknięcie poza modalem zamyka go
+    // kliknięcie poza modalem zamyka go
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal') && e.target.classList.contains('visible')) {
             closeModal(e.target);
@@ -316,7 +307,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Toggle checkbox event listeners
     document.querySelectorAll('.toggle-checkbox').forEach(checkbox => {
         checkbox.addEventListener('change', (event) => {
             console.log(`Checkbox ${event.target.dataset.option} changed to ${event.target.checked}`);
@@ -324,7 +314,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Obsługa interakcji między polami wyboru - upewnij się, że ten blok jest wewnątrz DOMContentLoaded
     const playingModeSelector = document.getElementById('initial-playing-mode');
     const playingDirectionSelector = document.getElementById('initial-playing-direction');
     const firstPlayingModeSelector = document.getElementById('first-initial-playing-mode');
@@ -336,25 +325,24 @@ document.addEventListener('DOMContentLoaded', () => {
         directionSelector.classList.toggle('disabled', isHarmonic);
     };
     
-    // Ważne: Zastosuj logikę do obu zestawów pól wyboru
     if (playingModeSelector && playingDirectionSelector) {
-        // Nasłuchiwanie zmian dla głównego ustawienia
+
         playingModeSelector.addEventListener('change', () => {
             updateDirectionState(playingModeSelector, playingDirectionSelector);
         });
-        // Ustawienie początkowego stanu przy ładowaniu strony
+
         updateDirectionState(playingModeSelector, playingDirectionSelector);
     }
     
     if (firstPlayingModeSelector && firstPlayingDirectionSelector) {
-        // Nasłuchiwanie zmian dla pierwszego uruchomienia
+
         firstPlayingModeSelector.addEventListener('change', () => {
             updateDirectionState(firstPlayingModeSelector, firstPlayingDirectionSelector);
         });
-        // Ustawienie początkowego stanu przy ładowaniu modalnego okna pierwszych ustawień
+
         updateDirectionState(firstPlayingModeSelector, firstPlayingDirectionSelector);
     }
-    // Mark app as initialized
+
     window.appState.isInitialized = true;
     console.log("App initialization complete");
 });
