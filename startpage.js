@@ -83,10 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startButton.addEventListener('click', () => {
         const instrument = document.getElementById('instrument-select').value;
 
-        // 1. POBIERZ AKTUALNY MOTYW
-        // Motyw jest przechowywany w localStorage (domyślnie 'light', jeśli nic nie ma)
         const currentTheme = localStorage.getItem('theme') || 'light'; 
-        // SPOSOB GRY
         const selectedDirection = document.getElementById('direction-select').value;
 
         console.log(`Rozpoczynanie ćwiczenia: Tryb=${selectedMode}, Instrument=${instrument}, Czas=${selectedDuration}s, Motyw=${currentTheme}`);
@@ -94,14 +91,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let baseUrl, queryString;
         switch (selectedMode) {
             case "intervals":
-                // Użyj poprawnej ścieżki (zgodnie z poprzednimi ustaleniami)
+
                 baseUrl = "exercises/intervals/index.html"; 
                 break;
             case "chords":
                 baseUrl = "exercises/chords/index.html";
                 break;
             default:
-                // Użyj poprawnej ścieżki (zgodnie z poprzednimi ustaleniami)
+
                 baseUrl = "exercises/intervals/index.html"; 
         }
         
@@ -141,26 +138,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const infoButton = document.getElementById('info-button');
     const closeModalButtons = document.querySelectorAll('.close-button');
 
-    // Funkcja otwierająca modal
     const openModal = (modal) => {
         console.log("Opening modal:", modal.id);
         modal.classList.add('visible');
     };
-
-    // Funkcja zamykająca modal
+    
     const closeModal = (modal) => {
         console.log("Closing modal:", modal.id);
         modal.classList.remove('visible');
     };
 
-    // Kliknięcie przycisku info otwiera modal
     if (infoButton && infoModal) {
         infoButton.addEventListener('click', () => {
             openModal(infoModal);
         });
     }
 
-    // Kliknięcie przycisku zamykania (x)
     closeModalButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal');
@@ -170,14 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Kliknięcie poza modalem zamyka go
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('modal') && e.target.classList.contains('visible')) {
             closeModal(e.target);
         }
     });
 
-    // ESC zamyka modal
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             const visibleModal = document.querySelector('.modal.visible');
@@ -189,3 +180,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log("Start page initialized successfully");
 });
+
