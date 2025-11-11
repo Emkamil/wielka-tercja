@@ -39,9 +39,10 @@ Poniżej przedstawiono główne widoki interfejsu aplikacji, zorganizowane w cel
 
 ## 🤝 Współpraca (Kontrybucje)
 
-**Wielka Tercja** jest otwarta na współpracę. Zachęcam społeczność do aktywnego udziału w rozwoju poprzez:
+**Wielka Tercja** jest otwarta na współpracę. Zachęcamy społeczność do aktywnego udziału w rozwoju poprzez:
 
 1.  **Zgłaszanie uchybień:** Wszelkie błędy lub propozycje usprawnień prosimy zgłaszać poprzez mechanizm **Issues**.
 2.  **Propozycje rozwojowe:** Pomysły na nowe funkcjonalności lub ulepszenie istniejących są mile widziane.
+
 
 Dziękujemy za zainteresowanie i wsparcie dla projektu o charakterze edukacyjnym.
