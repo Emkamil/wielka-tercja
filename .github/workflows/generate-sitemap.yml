@@ -18,19 +18,13 @@ jobs:
       - name: Generate Sitemap
         uses: cicirello/generate-sitemap@v1
         with:
-          # Ustawienie prawidłowej ścieżki bazowej (jak ustaliliśmy)
           base-url-path: https://emkamil.github.io/wielka-tercja
-          
-          # Wskazuje katalog, w którym znajdują się pliki HTML
           path-to-root: ./
-          
-          # Włącza skanowanie plików HTML
           include-html: true
           
-          # NOWA ZMIANA: Wyklucza wszystkie pliki HTML w katalogu 'exercises' i jego podkatalogach
-          # Wzór 'exercises/**' wyklucza pliki wewnątrz katalogu exercises
-          # Wzór '404.html' wyklucza pojedynczy plik błędu
-          exclude-paths: '404.html, exercises/**'
+          # POPRAWIONY WZÓR WYKLUCZENIA:
+          # Wskazujemy na pliki wewnątrz katalogu exercises.
+          exclude-paths: '404.html, exercises/**/*.html'
       - name: Commit and Push Sitemap # Zapisuje i wysyła plik sitemap.xml do repozytorium
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
