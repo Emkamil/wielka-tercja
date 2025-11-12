@@ -1,0 +1,39 @@
+name: Generate Sitemap
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  generate-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate Sitemap
+        uses: cicirello/generate-sitemap@v1
+        with:
+          
+          base_url: https://emkamil.github.io/wielka-tercja/
+          
+          output_path: ./sitemap.xml
+          
+          # Typ pliku, który ma być szukany (zazwyczaj szukamy plików HTML)
+          include_file_patterns: '/**/*.html'
+          
+          # Pliki do ignorowania (np. pliki błędów)
+          exclude_file_patterns: '/**/404.html'
+          
+          # Nazwa gałęzi, do której zostanie dodany plik sitemap.xml
+          target_branch: main
+
+      - name: Commit and Push Sitemap # Zapisuje i wysyła plik sitemap.xml do repozytorium
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "SEO: Automatyczna aktualizacja sitemap.xml przez GitHub Action"
+          file_pattern: sitemap.xml
