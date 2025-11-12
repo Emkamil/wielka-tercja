@@ -19,15 +19,15 @@ jobs:
         uses: cicirello/generate-sitemap@v1
         with:
           
-          base_url: https://emkamil.github.io/wielka-tercja/
+          base-url-path: https://emkamil.github.io/wielka-tercja/
           
-          output_path: ./sitemap.xml
+          output-path: ./sitemap.xml
           
           # Typ pliku, który ma być szukany (zazwyczaj szukamy plików HTML)
-          include_file_patterns: '/**/*.html'
+          include-html: true
           
           # Pliki do ignorowania (np. pliki błędów)
-          exclude_file_patterns: '/**/404.html'
+          exclude-paths: '404.html'
           
           # Nazwa gałęzi, do której zostanie dodany plik sitemap.xml
           target_branch: main
