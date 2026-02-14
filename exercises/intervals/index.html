@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="copyright" content="Copyright (c) 2025 Kamil Machowski">
+    <title>Wielka Tercja - Interwały</title>
+    <meta name="description"
+        content="Aplikacja przeglądarkowa pomagająca w nauce rozpoznawania interwałów i akordów." />
+    <meta property="og:title" content="Wielka Tercja">
+    <meta property="og:description"
+        content="Aplikacja przeglądarkowa pomagająca w ćwiczeniu rozpoznawania interwałów i akordów.">
+    <meta property="og:image" content="https://emkamil.github.io/wielka-tercja/icons/icon512.png">
+    <link rel="icon" href="/wielka-tercja/icons/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/wielka-tercja/global/styles/style_2.css">
+    <link rel="stylesheet" href="/wielka-tercja/global/styles/media.css">
+    <link rel="stylesheet" href="/wielka-tercja/global/styles/modal.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content-wrapper">
+            <a href="/wielka-tercja/" class="baner">
+                <img src="/wielka-tercja/icons/icon512.png" alt="Logo strony" class="logo">
+                <h1 class="hidden-on-tiny">Wielka tercja</h1>
+            </a>
+            <div class="toolbar-container">
+                <button id="theme-toggle" class="toolbar-button" aria-label="Przełącz motyw">
+                    <svg class="icon sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon moon hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="toolbar-button" id="info-button">
+                    <svg class="status-bar-button-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="feather feather-info">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12" y2="8"></line>
+                    </svg>
+                </button>
+
+                <a href="/wielka-tercja/">
+                    <button class="toolbar-button" id="homepage-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                            <path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V9.5z" />
+                        </svg>
+                    </button>
+                </a>
+            </div>
+    </header>
+
+    <main class="main-content">
+        <section id="interwaly" class="mode-section active-mode">
+            <div class="ex-control">
+                <button class="control-button" id="start-button">START</button>
+                <button class="control-button" id="next-button">NASTĘPNY</button>
+                <button class="control-button" id="repeat-button">POWTÓRZ</button>
+            </div>
+            <div class="options-container interval-container">
+                <!-- Pryma czysta (1) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="pryma-czysta"
+                        id="checkbox-pryma-czysta" />
+                    <div class="combined-element">
+                        <label for="checkbox-pryma-czysta" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="pryma-czysta">
+                            <span class="option-label">1</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Sekunda mała (2-) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="sekunda-mala" id="checkbox-sekunda-mala"
+                        checked />
+                    <div class="combined-element">
+                        <label for="checkbox-sekunda-mala" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="sekunda-mala">
+                            <span class="option-label">2&gt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Sekunda wielka (2) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="sekunda-wielka"
+                        id="checkbox-sekunda-wielka" checked />
+                    <div class="combined-element">
+                        <label for="checkbox-sekunda-wielka" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="sekunda-wielka">
+                            <span class="option-label">2</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Tercja mała (3>) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="tercja-mala" id="checkbox-tercja-mala"
+                        checked />
+                    <div class="combined-element">
+                        <label for="checkbox-tercja-mala" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="tercja-mala">
+                            <span class="option-label">3&gt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Tercja wielka (3) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="tercja-wielka"
+                        id="checkbox-tercja-wielka" checked />
+                    <div class="combined-element">
+                        <label for="checkbox-tercja-wielka" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="tercja-wielka">
+                            <span class="option-label">3</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Kwarta czysta (4) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="kwarta-czysta"
+                        id="checkbox-kwarta-czysta" checked />
+                    <div class="combined-element">
+                        <label for="checkbox-kwarta-czysta" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="kwarta-czysta">
+                            <span class="option-label">4</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Tryton (4+) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="tryton" id="checkbox-tryton" checked />
+                    <div class="combined-element">
+                        <label for="checkbox-tryton" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="tryton">
+                            <span class="option-label">4&lt; <b>/</b> 5&gt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Kwinta czysta (5) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="kwinta-czysta"
+                        id="checkbox-kwinta-czysta" checked />
+                    <div class="combined-element">
+                        <label for="checkbox-kwinta-czysta" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="kwinta-czysta">
+                            <span class="option-label">5</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Seksta mała (6>) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="seksta-mala" id="checkbox-seksta-mala"
+                        checked />
+                    <div class="combined-element">
+                        <label for="checkbox-seksta-mala" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="seksta-mala">
+                            <span class="option-label">6&gt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Seksta wielka (6) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="seksta-wielka"
+                        id="checkbox-seksta-wielka" checked />
+                    <div class="combined-element">
+                        <label for="checkbox-seksta-wielka" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="seksta-wielka">
+                            <span class="option-label">6</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Septyma mała (7-) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="septyma-mala" id="checkbox-septyma-mala"
+                        checked />
+                    <div class="combined-element">
+                        <label for="checkbox-septyma-mala" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="septyma-mala">
+                            <span class="option-label">7</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Septyma wielka (7) -->
+                <div class="option-group">
+                    <input type="checkbox" class="toggle-checkbox" data-option="septyma-wielka"
+                        id="checkbox-septyma-wielka" checked />
+                    <div class="combined-element">
+                        <label for="checkbox-septyma-wielka" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="septyma-wielka">
+                            <span class="option-label">7&lt;</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Oktawa czysta (8) -->
+                <div class="option-group centered-grid-item">
+                    <input type="checkbox" class="toggle-checkbox" data-option="oktawa-czysta"
+                        id="checkbox-oktawa-czysta" checked />
+                    <div class="combined-element">
+                        <label for="checkbox-oktawa-czysta" class="toggle-button">
+                            <svg class="icon-disable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                            </svg>
+                            <svg class="icon-enable" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </label>
+                        <button class="option-button" data-option="oktawa-czysta">
+                            <span class="option-label">8</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="status-bar">
+        <div class="footer-content-wrapper">
+            <div class="score-container">
+                <p>Wynik: </p>
+                <div class="score-box correct-answers">
+                    <span id="correct-count">0</span>
+                </div>
+                <div class="score-box wrong-answers">
+                    <span id="wrong-count">0</span>
+                </div>
+            </div>
+        </div>
+        <!--<div class="button-container-flex">
+        <button class="settings-button theme-toggle" id="theme-toggle">
+            <svg class="theme-icon light" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg class="theme-icon dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="settings-button" id="settings-button">
+            <svg class="status-bar-button-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        </button>
+        <button class="settings-button" id="info-button">
+            <svg class="status-bar-button-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="8"></line></svg>
+        </button>
+    </div>-->
+        </div>
+    </footer>
+
+    <div id="settings-modal" class="modal">
+        <div class="modal-content initial-modal-content">
+            <h2>Ustawienia</h2>
+            <div class="settings-options">
+                <label for="initial-instrument">Instrument:</label>
+                <select id="initial-instrument" name="instrument">
+                    <option value="piano">Fortepian</option>
+                </select>
+            </div>
+            <div class="settings-options">
+                <label for="initial-playing-mode">Sposób grania:</label>
+                <select id="initial-playing-mode" name="playing-mode">
+                    <option value="harmonic">Harmoniczny</option>
+                    <option value="melodic">Melodyczny</option>
+                </select>
+            </div>
+            <div class="settings-options">
+                <label for="initial-playing-direction">Kierunek gry:</label>
+                <select id="initial-playing-direction" name="playing-direction">
+                    <option value="up">W górę</option>
+                    <option value="down">W dół</option>
+                    <option value="mix-direction">Losowo</option>
+                </select>
+            </div>
+            <div class="settings-options">
+                <label for="initial-theme">Motyw:</label>
+                <select id="initial-theme" name="theme">
+                    <option value="light-theme">Jasny</option>
+                    <option value="dark-theme">Ciemny</option>
+                </select>
+            </div>
+            <br>
+            <div class="modal-buttons">
+                <button id="tutorial-button" class="github-button">Samouczek</button>
+                <button id="accept-settings-button" class="save-setting-button">Zapisz ustawienia</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="info-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Wielka Tercja - Informacje</h2>
+            <p><strong>Wersja aplikacji: </strong><span id="app-version">Ładowanie...</span></p>
+            <p>
+                Aplikacja została stworzona jako projekt otwarto-źródłowy, w celach edukacyjnych, aby pomóc uczniom w
+                ćwiczeniu rozpoznawania interwałów i akordów.<br>Strona zapisuje ustawienia użytkownika w pamięci
+                przeglądarki.
+            </p>
+
+            <h3>Autor</h3>
+            <p>
+                <strong>Kamil Machowski</strong> - uczeń I LO im. M. Kromera w Gorlicach oraz ZPSM w Gorlicach
+            </p>
+
+            <h3>Licencja</h3>
+            <p>
+                Ta aplikacja jest objęta licencją <a href="https://creativecommons.org/licenses/by-nd/4.0/"
+                    target="_blank" rel="noopener noreferrer">CC BY-ND 4.0</a>.
+            </p>
+
+            <div class="github-link">
+                <a href="https://github.com/Emkamil/" target="_blank" rel="noopener noreferrer">
+                    <button class="github-button">
+                        <svg class="github-icon" viewBox="0 0 96 98" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z"
+                                fill="#fff" />
+                        </svg>
+                        Przejdź na GitHub
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="initial-settings-modal" class="modal">
+        <div class="modal-content initial-modal-content">
+            <h2>Witaj na stronie!</h2>
+            <p>Wybierz początkowe ustawienia aplikacji. Strona zapisuje Twoje ustawienia w pamięci przeglądarki, aby
+                zapewnić spójne działanie aplikacji.<br><br><b>Aplikacja jest w fazie rozwojowej.</b></p>
+
+            <div class="settings-options">
+                <label for="initial-instrument">Instrument:</label>
+                <select id="first-initial-instrument" name="instrument">
+                    <option value="piano">Fortepian</option>
+                    <!--<option value="guitar">Gitara</option>-->
+                </select>
+            </div>
+
+            <div class="settings-options">
+                <label for="initial-playing-mode">Sposób grania:</label>
+                <select id="first-initial-playing-mode" name="playing-mode">
+                    <option value="harmonic">Harmoniczny</option>
+                    <option value="melodic">Melodyczny</option>
+                </select>
+            </div>
+
+            <div class="settings-options">
+                <label for="initial-playing-direction">Kierunek gry:</label>
+                <select id="first-initial-playing-direction" name="playing-direction">
+                    <option value="up">W górę</option>
+                    <option value="down">W dół</option>
+                    <option value="mix-direction">Losowo</option>
+                </select>
+            </div>
+
+            <div class="settings-options">
+                <label for="initial-theme">Motyw:</label>
+                <select id="first-initial-theme" name="theme">
+                    <option value="light-theme">Jasny</option>
+                    <option value="dark-theme">Ciemny</option>
+                </select>
+            </div>
+
+            <div class="modal-buttons">
+                <button id="accept-initial-settings-button" class="control-button">Zastosuj i rozpocznij</button>
+            </div>
+        </div>
+    </div>
+    <div id="custom-alert-modal" class="modal">
+        <div class="modal-content">
+            <p id="custom-alert-message"></p>
+            <div class="modal-buttons">
+                <button id="custom-alert-ok-button" class="save-setting-button">OK</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="tutorial-modal" class="modal">
+        <div class="modal-content initial-modal-content">
+            <!-- Slajd 1 -->
+            <div class="tutorial-slide tutorial-slide-1">
+                <h2>Krok 1: Pasek narzędzi</h2>
+                <p>Po lewej stronie znajduje się wynik. Po prawej możesz zmienić motyw, otworzyć ustawienia ćwiczeń lub
+                    wyświetlić informacje.</p>
+                <img src="/wielka-tercja/images/bottom_bar.jpg" alt="Krok 1 przewodnika" class="tutorial-image">
+            </div>
+
+            <!-- Slajd 2 (domyślnie ukryty) -->
+            <div class="tutorial-slide tutorial-slide-2" style="display: none;">
+                <h2>Krok 2: Losowanie interwałów</h2>
+                <p>Klikając ✔ obok interwału i akordu możesz go włączyć lub wyłączyć z losowania ćwiczeń.</p>
+                <img src="/wielka-tercja/images/disable_option_button.jpg" alt="Krok 1 przewodnika"
+                    class="tutorial-image">
+            </div>
+
+            <!-- Slajd 3 (domyślnie ukryty) -->
+            <div class="tutorial-slide tutorial-slide-3" style="display: none;">
+                <h2>Krok 3: Ćwiczenie</h2>
+                <p>Rozpocznij ćwiczenie przyciskiem START, następne ćwiczenia odtwarzają się automatycznie po wybraniu
+                    odpowiedzi. Przycisk NASTĘPNY traktuje odpowiedź jako błędną i przechodzi do kolejnego ćwiczenia.
+                </p>
+                <img src="/wielka-tercja/images/start.jpg" alt="Krok 1 przewodnika" class="tutorial-image">
+            </div>
+
+            <div class="modal-buttons tutorial-buttons">
+                <button id="tutorial-prev-button" class="control-button" style="display: none;">Poprzedni</button>
+                <button id="tutorial-next-button" class="control-button">Następny</button>
+                <button id="close-tutorial-button" class="save-setting-button" style="display: none;">Zakończ
+                    przewodnik</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/wielka-tercja/global/scripts/app2.js"></script>
+    <!-- privacy-first analytics/entry counters -->
+    <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script src="interval.js"></script>
+</body>
+
+</html>

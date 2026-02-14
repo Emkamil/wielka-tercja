@@ -1,0 +1,486 @@
+/*
+* Wielka Tercja
+*
+ * startpage.css
+ *
+ * Copyright (c) 2025 Kamil Machowski
+ *
+ * Ten projekt jest objęty licencją CC BY-ND 4.0
+ *
+ */
+
+:root {
+    --bg-main: #f4f4f9;
+    --bg-control: #ffffff;
+    --bg-header: #000f22;
+
+    --color-text-primary: #212529;
+    --color-text-secondary: #6c757d;
+    --color-text-control: #495057;
+
+    --color-border: #e9ecef;
+    --color-border-subtle: #ced4da;
+    --shadow-control: 0 4px 10px rgba(0, 0, 0, 0.05);
+
+    --color-accent-blue: #007bff;
+    --color-accent-start: #17a2b8;
+
+    --toolbar-button-active: #006fa4;
+
+    --modal-section-bg: #f0f0f0;
+    --disabled-btn: #9ca3aa;
+}
+
+.dark-mode {
+    --bg-main: #2c2c2c;
+    --bg-control: #1e1e1e;
+    --bg-header: #121212;
+
+    --color-text-primary: #f8f9fa;
+    --color-text-secondary: #bdbdbd;
+    --color-text-control: #e0e0e0;
+
+    --color-border: #333;
+    --color-border-subtle: #444;
+    --shadow-control: 0 4px 10px rgba(0, 0, 0, 0.4);
+
+    --toolbar-button-active: #007bff;
+
+    --modal-section-bg: #3a3a3a;
+}
+
+/* ------------------------------------------------ */
+/* 1. STYLAŻ PODSTAWOWY I NAGŁÓWEK */
+/* ------------------------------------------------ */
+@font-face {
+    font-family: 'NotoSansVariable';
+    src: url('/wielka-tercja/global/fonts/NotoSans-VariableFont.ttf') format('truetype-variations');
+    /* Definiujemy zakres obsługiwanej grubości i szerokości */
+    font-weight: 100 900;
+    font-stretch: 75% 125%;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'NotoSansVariable';
+    background-color: var(--bg-main);
+    color: var(--color-text-primary);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    width: 100%;
+    background-color: var(--bg-header);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.header-content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.baner {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.baner h1 {
+    font-size: 1.7em;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: white;
+}
+
+.toolbar-container {
+    display: flex;
+    gap: 10px;
+}
+
+.toolbar-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    min-width: 43px;
+    min-height: 43px;
+    width: 43px;
+    height: 43px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.toolbar-button svg {
+    width: 24px !important;
+    height: 24px !important;
+    display: inline-block;
+}
+
+.toolbar-button .hidden {
+    display: none;
+}
+
+.dark-mode .toolbar-button {
+    color: #ffffff;
+}
+
+.icon-mode {
+    margin-right: 6px;
+    vertical-align: middle;
+}
+
+/* ------------------------------------------------ */
+/* 2. GŁÓWNY UKŁAD I KONTROLKI */
+/* ------------------------------------------------ */
+.buttons-container-columns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 750px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    gap: 15px;
+}
+
+.intro-box {
+    text-align: center;
+}
+
+.intro-box h2 {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+}
+
+.intro-box p {
+    font-size: 1.05em;
+    color: var(--color-text-secondary);
+}
+
+.mode-container.outer-box,
+.instrument-container.outer-box,
+.duration-container.outer-box,
+.direction-container.outer-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.control-box {
+    padding: 15px 20px;
+    background-color: var(--bg-control);
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-control);
+    text-align: center;
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    max-width: 450px;
+}
+
+.mode-selection {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.mode-btn {
+    display: flex;
+    padding: 12px 20px;
+
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 12px;
+    background-color: var(--bg-control);
+    color: var(--color-text-control);
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 150px;
+}
+
+.mode-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    background-color: var(--disabled-btn);
+    border-color: var(--color-border-subtle);
+    box-shadow: none;
+}
+
+.mode-btn.active {
+    background-color: var(--color-accent-blue);
+    color: white;
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.4);
+}
+
+.acces-info {
+
+    font-size: 0.7em;
+}
+
+.instrument-container label,
+.duration-container label,
+.direction-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1.0em;
+    font-weight: 600;
+    color: var(--color-text-control);
+}
+
+#instrument-select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-subtle);
+    font-size: 1.05em;
+    cursor: pointer;
+    background-color: var(--bg-control);
+    color: var(--color-text-control);
+    min-width: 200px;
+}
+
+#direction-select {
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border-subtle);
+    font-size: 1.05em;
+    cursor: pointer;
+    background-color: var(--bg-control);
+    color: var(--color-text-control);
+    min-width: 200px;
+    max-width: 350px;
+    width: 100%;
+    /* Zajmuje całą dostępną szerokość kontenera */
+    /* Kasujemy sztywne 250px, które wypychało kontener */
+    box-sizing: border-box;
+    /* Gwarantuje, że padding nie zwiększa szerokości */
+
+}
+
+/* PRZYCISKI CZASU TRWANIA */
+.duration-buttons-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.duration-btn {
+    padding: 10px 16px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 12px;
+    background-color: var(--bg-control);
+    color: var(--color-text-control);
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.duration-btn.active {
+    background-color: var(--color-accent-blue);
+    color: white;
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+/* START */
+.start-btn {
+    margin-top: 15px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #17a2b8, #007bff);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.3em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover tylko na desktopach */
+@media (hover: hover) {
+
+    .mode-btn:hover,
+    .duration-btn:hover,
+    .start-btn:hover,
+    .toolbar-button:hover,
+    .github-button:hover {
+        filter: brightness;
+    }
+}
+
+/*Modale*/
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+
+}
+
+.modal.visible {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--modal-section-bg);
+    color: var(--text-color);
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content.alert {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        margin: 10px;
+    }
+}
+
+.modal-content.alert p {
+    text-align: center;
+}
+
+.close-button {
+    color: var(--header-bg);
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--menu-button-bg);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.github-link {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.github-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.github-button {
+    display: flex;
+    background-color: #1d1d1d;
+    color: white;
+    border: none;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+body.dark-theme {
+    background-color: #777;
+}
+
+.initial-modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+.save-setting-button {
+    background-color: var(--control-button-bg);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.save-setting-button:hover {
+    background-color: var(--control-button-hover);
+}
+
+.modal-content.alert .close-button {
+    display: none;
+}
+
+.tutorial-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.tutorial-buttons .control-button {
+    flex: 1;
+    max-width: none;
+
+}
+
+#direction-select option:disabled {
+    color: var(--color-text-secondary);
+    background-color: var(--option-button-disabled-bg-light);
+}
