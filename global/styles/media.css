@@ -1,0 +1,140 @@
+/*
+* Wielka Tercja
+*
+* media.css
+*
+* Copyright (c) 2025 Kamil Machowski
+*
+* Ten projekt jest objęty licencją  CC BY-ND 4.0
+*
+*/
+
+@media (min-width: 601px) {
+    .header-menu {
+        gap: 20px;
+    }
+
+    .menu-button {
+        flex-grow: 1;
+        flex-basis: auto;
+    }
+}
+
+@media (min-width: 350px) {
+    .options-container {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    /*desktop*/
+    .menu-button:hover {
+        background-color: var(--menu-button-hover-light);
+    }
+
+    .menu-button.active:hover {
+        background-color: var(--menu-button-active-light);
+    }
+
+    .control-button:hover {
+        background-color: var(--control-button-hover-light);
+    }
+
+    .settings-button:hover {
+        background-color: var(--control-button-hover-light);
+    }
+
+    .toggle-checkbox:checked+.combined-element .option-button:hover {
+        background-color: var(--option-button-hover-light);
+    }
+
+    .tutorial-image:hover {
+        transform: scale(1.01);
+    }
+
+    .github-button:hover {
+        background-color: #555;
+    }
+
+    body.dark-theme .github-button:hover {
+        background-color: #777;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+
+    /*touchscreen*/
+    .menu-button:active {
+        background-color: var(--menu-button-active-light);
+        transform: scale(1.1);
+    }
+
+    .control-button:active {
+        background-color: var(--control-button-active-light);
+        transform: scale(1.1);
+    }
+
+    .settings-button:active {
+        background-color: var(--control-button-active-light);
+        transform: scale(1.1);
+    }
+
+    .tutorial-image:active {
+        transform: scale(1.02);
+    }
+
+}
+
+/* Responsywność - dopasowanie do media.css */
+@media (max-width: 480px) {
+    .custom-select {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}
+
+/* Dodaj to w sekcji dla małych ekranów w media.css */
+
+@media (max-width: 600px) {
+    .modal-buttons {
+        /* Upewniamy się, że przyciski wewnątrz modali mają oddech */
+        gap: 10px;
+        padding: 0 10px;
+        width: 100%;
+        box-sizing: border-box;
+        /* Ważne, by padding nie zwiększał szerokości */
+    }
+
+    .control-button {
+        /* Pozwalamy przyciskom na elastyczność */
+        flex: 1 1 auto;
+        min-width: 100px;
+        /* Pozwala na zwężenie poniżej rozmiaru treści */
+        padding: 10px 15px;
+        /* Nieco mniejszy padding boczny na mobile */
+        font-size: 0.9rem;
+        /* Opcjonalnie mniejsza czcionka, by tekst się mieścił */
+
+        /* Zapewnienie, że przycisk nie wyjdzie poza ekran */
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Specyficzna poprawka dla bardzo małych ekranów (np. iPhone SE) */
+@media (max-width: 380px) {
+
+    .tutorial-buttons,
+    .modal-buttons {
+        flex-wrap: wrap;
+        /* Jeśli przyciski nadal się nie mieszczą, jeden pod drugim */
+        justify-content: center;
+    }
+
+    .control-button {
+        width: 100%;
+        /* Na ekstremalnie małych ekranach lepiej dać jeden pod drugim */
+        margin: 5px 0;
+    }
+}

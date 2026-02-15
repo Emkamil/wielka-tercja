@@ -1,0 +1,18 @@
+{
+    "lang": "pl-PL",
+    "name": "Wielka Tercja",
+    "short_name": "Wielka Tercja",
+    "description": "Aplikacja pomagająca uczniom w nauce rozpoznawania interwałów i akordów",
+    "start_url": "/wielka-tercja/",
+    "background_color": "#000f22",
+    "theme_color": "#000f22",
+    "orientation": "any",
+    "display": "standalone",
+    "version": "1.2.1",
+    "icons": [
+        {
+            "src": "/icons/icon512.png",
+            "sizes": "512x512"
+        }
+    ]
+}

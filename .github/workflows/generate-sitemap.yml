@@ -1,0 +1,32 @@
+name: Generate Sitemap
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  generate-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate Sitemap
+        uses: cicirello/generate-sitemap@v1
+        with:
+          base-url-path: https://emkamil.github.io/wielka-tercja
+          path-to-root: ./
+          include-html: true
+          
+          # POPRAWIONY WZÓR WYKLUCZENIA:
+          # Wskazujemy na pliki wewnątrz katalogu exercises.
+          exclude-paths: '404.html, exercises/**/*.html'
+      - name: Commit and Push Sitemap # Zapisuje i wysyła plik sitemap.xml do repozytorium
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "SEO: Automatyczna aktualizacja sitemap.xml przez GitHub Action"
+          file_pattern: sitemap.xml
