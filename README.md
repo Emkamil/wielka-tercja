@@ -14,7 +14,7 @@ Głównym założeniem projektu jest dostarczenie **precyzyjnego i funkcjonalneg
 
 * **Trening interwałów:** Ćwiczenia losowego generowania i identyfikacji interwałów.
 
-* **Trening akordów:** Możliwość rozpoznawania akordów z większą ilością składników harmonicznych (funkcjonalność w trakcie implementacji).
+* **Trening akordów:** Możliwość rozpoznawania akordów z większą ilością składników harmonicznych.
 
 ---
 
