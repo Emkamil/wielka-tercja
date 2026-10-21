@@ -4,7 +4,7 @@
       "id": "intervals",
       "title": "Interwały",
       "description": "Rozpoznawaj odległość między dwoma dźwiękami, od prymy po oktawę.",
-      "icon": "<path d=\"M12 3l2 2-2 2-2-2 2-2zm0 6a6 6 0 100 12 6 6 0 000-12z\"/>",
+      "icon": "<path d=\"M9 3v10.55c-.59-.34-1.27-.55-2-.55C4.79 13 3 14.79 3 17s1.79 4 4 4 4-1.79 4-4V7h8v8.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V3H9z\"/>",
       "module": "intervals.js",
       "playModes": [
         "harmonic",
@@ -18,7 +18,7 @@
       "id": "chords",
       "title": "Akordy",
       "description": "Odróżniaj trójdźwięki, dominanty septymowe, i ich przewroty.",
-      "icon": "<path d=\"M4 4h2v16H4V4zm14 0h2v16h-2V4zM10 8h2v12h-2V8zm4 4h2v8h-2v-8z\"/>",
+      "icon": "<path d=\"M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h2v8h2V5h2v8h2V5h2v8h2V5h2v8h2V5h2v8h2V5h2v14z\"/>",
       "module": "chords.js",
       "playModes": [
         "harmonic",
@@ -31,7 +31,7 @@
       "id": "notes",
       "title": "Dźwięki",
       "description": "Rozpoznawaj nazwy dźwięków.",
-      "icon": "<path d=\"M9 18V5l11-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm11-2a3 3 0 11-6 0 3 3 0 016 0z\"/>",
+      "icon": "<path d=\"M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z\"/>",
       "module": "notes.js",
       "playModes": [],
       "color": "#ffbb8f"
@@ -40,7 +40,7 @@
       "id": "scales",
       "title": "Gamy",
       "description": "Rozpoznawaj dur, moll i inne po brzmieniu całej gamy.",
-      "icon": "<path d=\"M3 20h4v-4h4v-4h4V8h4V4h2\"/>",
+      "icon": "<path d=\"M4 20h4v-8H4v8zm6 0h4v-12h-4v12zm6-16v16h4V4h-4z\"/>",
       "module": "scales.js",
       "playModes": [
         "melodic-up",
