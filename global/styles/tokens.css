@@ -1,0 +1,116 @@
+/*
+ * Wielka Tercja
+ *
+ * global/styles/tokens.css
+ *
+ * Copyright (c) 2025-2026 Kamil Machowski
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* Tokeny projektowe: łagodne pastele (lawenda, róż, brzoskwinia, mięta) na ciepłym, jasnym tle.
+ * Pastelowe wypełnienia mają ciemny tekst (--on-accent / --on-fill); każda para tekst/tło ma kontrast >= 4,5:1.
+ * Jasny i ciemny motyw, rozmiary. */
+
+:root {
+    color-scheme: light;
+
+    /* tło: róż -> lawenda -> mięta (statyczny gradient) */
+    --bg: #fdf2f0;
+    --bg-gradient: linear-gradient(160deg, #fdeef0 0%, #f4f0ff 52%, #e9f7f0 100%);
+
+    /* powierzchnie */
+    --surface: rgba(255, 255, 255, .82);
+    --surface-strong: #ffffff;
+    --surface-2: #f1ecf7;                         /* wyłączone elementy, tło przełączników */
+    --glass: rgba(255, 255, 255, .75);            /* nagłówek, dock, okna (jedyne miejsca z rozmyciem) */
+    --glass-blur: blur(10px);
+    --border: #d4c9e6;
+
+    --text: #2a2438;
+    --muted: #6a6479;
+
+    --staff: rgba(138, 108, 230, .22);            /* linie pięciolinii */
+
+    /* akcent domyślny (pastel); każde ćwiczenie ma własny kolor (exercises/registry.json) */
+    --accent: #b8a9f7;
+    --accent-soft: color-mix(in srgb, var(--accent) 24%, transparent);
+    --accent-text: #6d4fd1;                       /* akcent jako kolor tekstu / ramki fokusu na jasnym tle */
+    --on-accent: #2a2438;                         /* tekst na pastelowym wypełnieniu */
+    --focus: #6d4fd1;
+    --sun: #ffc46b;                               /* ozdobny, maślany akcent */
+
+    /* informacja zwrotna: miętowa zieleń i koralowy (+ symbole ✓ / ✗, żeby nie polegać na samym kolorze) */
+    --ok: #9be3b5;
+    --bad: #ffb2a1;
+    --on-fill: #2a2438;
+    --ok-text: #1f6b45;
+    --bad-text: #b4472b;
+
+    --shadow-1: 0 1px 2px rgba(80, 50, 120, .08), 0 4px 12px rgba(80, 50, 120, .07);
+    --shadow-2: 0 16px 40px rgba(60, 40, 100, .25);
+
+    /* geometria */
+    --radius-s: .75rem;
+    --radius-m: 1rem;
+    --radius-l: 1.5rem;
+    --gutter: clamp(1rem, 4vw, 2rem);
+    --header-h: 3.5rem;
+    --page-max: 70rem;
+    --tap: 3rem;                                   /* minimalna wysokość elementów dotykowych */
+
+    /* typografia */
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --fs-s: .875rem;
+    --fs-m: 1rem;
+    --fs-l: clamp(1.125rem, 1.02rem + .5vw, 1.375rem);
+    --fs-xl: clamp(1.75rem, 1.15rem + 2.8vw, 3.25rem);
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #1f1b2e;
+    --bg-gradient: linear-gradient(160deg, #1f1b2e 0%, #271f3b 55%, #1e2a35 100%);
+
+    --surface: rgba(43, 37, 64, .88);
+    --surface-strong: #332c4d;
+    --surface-2: #3a3256;
+    --glass: rgba(31, 27, 46, .78);
+    --border: #4a4170;
+
+    --text: #f4efff;
+    --muted: #b4abc8;
+    --staff: rgba(203, 188, 255, .22);
+
+    --accent-text: #cbbcff;
+    --focus: #cbbcff;
+
+    --ok-text: #8ee0ae;
+    --bad-text: #ffa58f;
+
+    --shadow-1: 0 1px 2px rgba(0, 0, 0, .35), 0 4px 12px rgba(0, 0, 0, .25);
+    --shadow-2: 0 16px 40px rgba(0, 0, 0, .6);
+}
+
+/* bez obsługi rozmycia tła półprzezroczyste elementy muszą być bardziej kryjące */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    :root { --glass: rgba(255, 255, 255, .96); }
+    :root[data-theme="dark"] { --glass: rgba(31, 27, 46, .97); }
+}
+
+/* niski ekran w poziomie (telefon na boku): oszczędzaj pionowe miejsce */
+@media (orientation: landscape) and (max-height: 520px) {
+    :root { --header-h: 3rem; }
+}

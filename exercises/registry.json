@@ -1,0 +1,52 @@
+{
+  "exercises": [
+    {
+      "id": "intervals",
+      "title": "Interwały",
+      "description": "Rozpoznawaj odległość między dwoma dźwiękami, od prymy po oktawę.",
+      "icon": "<path d=\"M12 3l2 2-2 2-2-2 2-2zm0 6a6 6 0 100 12 6 6 0 000-12z\"/>",
+      "module": "intervals.js",
+      "playModes": [
+        "harmonic",
+        "melodic-up",
+        "melodic-down",
+        "melodic-random"
+      ],
+      "color": "#b8a9f7"
+    },
+    {
+      "id": "chords",
+      "title": "Akordy",
+      "description": "Odróżniaj trójdźwięki, dominanty septymowe, i ich przewroty.",
+      "icon": "<path d=\"M4 4h2v16H4V4zm14 0h2v16h-2V4zM10 8h2v12h-2V8zm4 4h2v8h-2v-8z\"/>",
+      "module": "chords.js",
+      "playModes": [
+        "harmonic",
+        "melodic-up",
+        "melodic-down"
+      ],
+      "color": "#f5a7c4"
+    },
+    {
+      "id": "notes",
+      "title": "Dźwięki",
+      "description": "Rozpoznawaj nazwy dźwięków.",
+      "icon": "<path d=\"M9 18V5l11-2v13M9 18a3 3 0 11-6 0 3 3 0 016 0zm11-2a3 3 0 11-6 0 3 3 0 016 0z\"/>",
+      "module": "notes.js",
+      "playModes": [],
+      "color": "#ffbb8f"
+    },
+    {
+      "id": "scales",
+      "title": "Gamy",
+      "description": "Rozpoznawaj dur, moll i inne po brzmieniu całej gamy.",
+      "icon": "<path d=\"M3 20h4v-4h4v-4h4V8h4V4h2\"/>",
+      "module": "scales.js",
+      "playModes": [
+        "melodic-up",
+        "melodic-down"
+      ],
+      "color": "#8fddc1"
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+/*
+ * Wielka Tercja
+ *
+ * global/styles/home.css
+ *
+ * Copyright (c) 2025-2026 Kamil Machowski
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* Strona startowa: hasło z pięciolinią, wybór ćwiczenia, ustawienia. */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    color: var(--text);
+    /* hero stanowi dalszy ciąg nagłówka - bez szwu między nimi */
+    margin-top: calc(var(--header-h) * -1 - env(safe-area-inset-top));
+    padding-top: calc(var(--header-h) + env(safe-area-inset-top));
+}
+
+.hero__inner {
+    position: relative;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(1.5rem, 5vw, 3.5rem) var(--gutter) calc(57px + clamp(1.5rem, 4vw, 2.5rem));
+}
+
+.hero h1 {
+    max-width: 14ch;
+    margin: 0 0 .75rem;
+    font-size: var(--fs-xl);
+    font-weight: 800;
+    letter-spacing: -.025em;
+    text-wrap: balance;
+}
+
+.hero p {
+    max-width: 34rem;
+    margin: 0;
+    font-size: var(--fs-l);
+    color: var(--muted);
+    text-wrap: pretty;
+}
+
+/* pięciolinia: 5 linii co 14 px (linie na y = 0, 14, 28, 42, 56); nuty w SVG wskazują na te same linie */
+.hero__staff {
+    position: absolute;
+    left: 0; right: 0; bottom: clamp(1rem, 3vw, 1.75rem);
+    height: 57px;
+    background: repeating-linear-gradient(to bottom, var(--staff) 0 1px, transparent 1px 14px);
+    pointer-events: none;
+}
+
+/*.hero__notes {
+    position: absolute;
+    right: max(var(--gutter), calc((100% - var(--page-max)) / 2 + var(--gutter)));
+    top: 0;
+    width: 4.5rem;
+    height: 57px;
+    overflow: visible;
+}
+
+.hero__notes ellipse { fill: var(--text); }
+.hero__notes ellipse:last-child { fill: var(--sun); } */
+
+@media (max-width: 30rem) { .hero__notes { opacity: .6; } }
+
+/* ---------------------------------------------------------------- treść */
+
+.home__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "picker" "setup" "cta";
+    gap: 1.5rem;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 1.75rem var(--gutter) 0;
+}
+
+.picker { grid-area: picker; }
+.setup { grid-area: setup; }
+.cta-bar { grid-area: cta; }
+
+.home h2 { font-size: var(--fs-l); margin-bottom: .875rem; }
+
+.exercise-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: .75rem;
+}
+
+.exercise-card {
+    /* ciemniejszy odcień koloru ćwiczenia: ikona i ramka wybranej karty (w ciemnym motywie pastel wprost) */
+    --c-deep: color-mix(in srgb, var(--c, var(--accent)) 50%, #2a2438);
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: .875rem;
+    padding: 1rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-l);
+    background: var(--surface);
+    box-shadow: var(--shadow-1);
+    cursor: pointer;
+    transition: border-color .15s, background-color .15s, box-shadow .15s;
+}
+
+.exercise-card__input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+
+.exercise-card__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-m);
+    background: color-mix(in srgb, var(--c, var(--accent)) 32%, transparent);
+    color: var(--c-deep);
+    transition: background-color .15s, color .15s;
+}
+
+.exercise-card__icon svg { width: 1.6rem; height: 1.6rem; }
+
+.exercise-card__icon svg [stroke] { fill: none; }
+
+.exercise-card__title { display: block; font-size: 1.125rem; font-weight: 700; line-height: 1.25; }
+.exercise-card__desc { display: block; margin-top: .25rem; font-size: var(--fs-s); line-height: 1.4; color: var(--muted); text-wrap: pretty; }
+
+.exercise-card:has(input:checked) {
+    border-color: var(--c-deep);
+    background: color-mix(in srgb, var(--c, var(--accent)) 20%, var(--surface-strong));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--c, var(--accent)) 45%, transparent);
+}
+
+.exercise-card:has(input:checked) .exercise-card__icon { background: var(--c, var(--accent)); color: var(--on-accent); }
+html[data-theme="dark"] .exercise-card { --c-deep: var(--c, var(--accent)); }
+.exercise-card:has(input:focus-visible) { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+@media (hover: hover) {
+    .exercise-card:hover { border-color: var(--c-deep); }
+}
+
+.setup {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    padding: 1.25rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-l);
+    background: var(--surface);
+    box-shadow: var(--shadow-1);
+}
+
+.setup h2 { margin-bottom: 0; }
+.setup .segmented { justify-self: start; min-width: 12rem; }
+
+/* przycisk startu: na telefonie przyklejony do dołu ekranu */
+.cta-bar {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: .75rem var(--gutter) calc(.75rem + env(safe-area-inset-bottom));
+    background: linear-gradient(to top, color-mix(in srgb, var(--bg) 85%, transparent) 55%, transparent);
+}
+
+.cta-bar .btn { width: 100%; }
+
+/* tablet i komputer: dwie kolumny, ustawienia obok listy */
+@media (min-width: 54rem) {
+    .home__body {
+        grid-template-columns: minmax(0, 1fr) 21rem;
+        grid-template-areas: "picker setup" "picker cta";
+        align-items: start;
+        gap: 1.5rem 2rem;
+        padding-bottom: 3rem;
+    }
+
+    .setup { position: sticky; top: calc(var(--header-h) + 1rem); }
+    .cta-bar { position: static; margin: 0; padding: 0; background: none; align-self: start; }
+    .exercise-list { grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+}
+
+/* telefon w poziomie: mniej pionowego miejsca */
+@media (orientation: landscape) and (max-height: 520px) {
+    .hero__inner { padding-block: 1rem calc(57px + 2.25rem); }
+    .hero h1 { font-size: 1.75rem; max-width: none; margin-bottom: .25rem; }
+    .hero p { font-size: 1rem; }
+}

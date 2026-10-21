@@ -15,9 +15,9 @@
         content="Aplikacja przeglądarkowa pomagająca w ćwiczeniu rozpoznawania interwałów i akordów.">
     <meta property="og:image" content="https://emkamil.github.io/wielka-tercja/icons/icon512.png">
     <link rel="icon" href="/wielka-tercja/icons/icon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/wielka-tercja/global/styles/style_2.css">
-    <link rel="stylesheet" href="/wielka-tercja/global/styles/media.css">
-    <link rel="stylesheet" href="/wielka-tercja/global/styles/modal.css">
+    <link rel="stylesheet" href="/wielka-tercja/old/global/styles/style_2.css">
+    <link rel="stylesheet" href="/wielka-tercja/old/global/styles/media.css">
+    <link rel="stylesheet" href="/wielka-tercja/old/global/styles/modal.css">
 </head>
 
 <body>
@@ -58,7 +58,7 @@
                     </svg>
                 </button>
 
-                <a href="/wielka-tercja/">
+                <a href="/wielka-tercja/old/index.html">
                     <button class="toolbar-button" id="homepage-button">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
@@ -68,7 +68,60 @@
                 </a>
             </div>
     </header>
+        <style>
+            .wt-banner {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: .5rem 1rem;
+                position: relative;
+                box-sizing: border-box;
+                width: 100%;
+                padding: .75rem 3.25rem .75rem 1rem;
+                background: linear-gradient(90deg, #ffb703, #fb8500);
+                color: #1b1300;
+                font: 600 1rem/1.4 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                text-align: center;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+            }
+            .wt-banner__text { margin: 0; }
+            .wt-banner__link {
+                display: inline-block;
+                padding: .4rem 1rem;
+                border-radius: 999px;
+                background: #1b1300;
+                color: #fff;
+                font-weight: 700;
+                text-decoration: none;
+                white-space: nowrap;
+            }
+            .wt-banner__link:hover,
+            .wt-banner__link:focus-visible { background: #fff; color: #1b1300; }
+            .wt-banner__close {
+                position: absolute;
+                top: 50%;
+                right: .5rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                transform: translateY(-50%);
+                border: 0;
+                border-radius: 50%;
+                background: transparent;
+                color: #1b1300;
+                font-size: 1.75rem;
+                line-height: 1;
+                cursor: pointer;
+            }
+            .wt-banner__close:hover { background: rgba(0, 0, 0, .12); }
+            </style>
 
+            <div class="wt-banner" role="status">
+            <p class="wt-banner__text">🎉 Nowa wersja Wielkiej Tercji jest już dostępna.</p>
+            <a class="wt-banner__link" href="/wielka-tercja/">Przejdź do nowej wersji</a>
+            <button class="wt-banner__close" type="button" aria-label="Zamknij powiadomienie"
+                    onclick="this.parentNode.remove()">&times;</button>
+            </div>
     <main class="main-content">
         <section id="interwaly" class="mode-section active-mode">
 
@@ -288,7 +341,7 @@
     </div>---->
 
 
-    <script src="/wielka-tercja/global/scripts/app2.js"></script>
+    <script src="/wielka-tercja/old/global/scripts/app2.js"></script>
     <!-- privacy-first analytics/entry counters -->
     <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
     <script src="chords.js"></script>

@@ -222,7 +222,7 @@ if (Object.keys(argumentsURL).length > 0) {
 
 async function loadVersion() {
     try {
-        const response = await fetch('/wielka-tercja/manifest.json');
+        const response = await fetch('/wielka-tercja/old/manifest.json');
         if (!response.ok) throw new Error('Błąd ładowania pliku');
 
         const data = await response.json();

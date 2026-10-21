@@ -1,0 +1,257 @@
+/*
+ * Wielka Tercja
+ *
+ * global/styles/exercise.css
+ *
+ * Copyright (c) 2025-2026 Kamil Machowski
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* Strona ćwiczenia.
+ * Telefon (pion):       tytuł -> odpowiedzi -> dock z przyciskami przyklejony do dołu (w zasięgu kciuka)
+ * Tablet / komputer /
+ * telefon poziomo:      panel boczny (tytuł, sterowanie, wynik) + siatka odpowiedzi obok
+ */
+
+.ex {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: "intro" "answers" "dock";
+    max-width: var(--page-max);
+    min-height: calc(100dvh - var(--header-h) - env(safe-area-inset-top));
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+}
+
+.ex__side { display: contents; }
+.ex__intro { grid-area: intro; padding-top: 1.25rem; }
+.ex__answers { grid-area: answers; padding: .5rem 0 1.5rem; }
+
+.ex__title { margin: 0 0 .25rem; font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem); font-weight: 800; letter-spacing: -.02em; }
+.ex__summary { margin: 0 0 .875rem; font-size: var(--fs-s); color: var(--muted); }
+.ex__intro .field { max-width: 22rem; }
+.ex__hint { margin: 1rem 0 0; font-size: var(--fs-s); color: var(--muted); }
+
+/* ---------------------------------------------------------------- odpowiedzi */
+
+.answers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 9.5rem), 1fr));
+    gap: .625rem;
+    margin-top: .875rem;
+}
+
+.answer {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    min-height: 3.5rem;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-m);
+    background: var(--surface-strong);
+    overflow: hidden;
+    box-shadow: var(--shadow-1);
+}
+
+.answer__toggle {
+    position: relative;
+    display: grid;
+    place-items: center;
+    background: var(--surface-2);
+    color: var(--muted);
+    cursor: pointer;
+    transition: background-color .15s, color .15s;
+}
+
+.answer__check { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.answer__mark { display: grid; place-items: center; pointer-events: none; }
+.answer__mark svg { width: 1.25rem; height: 1.25rem; }
+.answer__on { display: none; }
+.answer[data-enabled="true"] .answer__toggle { background: var(--accent); color: var(--on-accent); }
+.answer[data-enabled="true"] .answer__on { display: grid; }
+.answer[data-enabled="true"] .answer__off { display: none; }
+.answer__toggle:has(.answer__check:focus-visible) { outline: 3px solid var(--focus); outline-offset: -3px; }
+
+.answer__btn {
+    min-width: 0;
+    padding: .5rem .5rem;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    font: inherit;
+    font-size: 1.125rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+    text-align: center;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    cursor: pointer;
+    transition: background-color .15s, color .15s;
+}
+
+.answer__btn:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.answer__btn:active:not(:disabled) { background: var(--accent-soft); }
+.answer[data-enabled="false"] .answer__btn { color: var(--muted); background: var(--surface-2); cursor: not-allowed; font-weight: 600; }
+.answer[data-enabled="false"] { background: var(--surface-2); }
+.answer[data-enabled="false"] { box-shadow: none; }
+.answer[data-long="true"] .answer__btn { font-size: .975rem; }
+
+.answers[data-locked="true"] .answer__btn { pointer-events: none; }
+
+.answer__btn.correct { background: var(--ok) !important; color: var(--on-fill) !important; }
+.answer__btn.wrong { background: var(--bad) !important; color: var(--on-fill) !important; animation: shake .45s; }
+/* symbol obok koloru: odpowiedź widać także bez rozróżniania zieleni i pomarańczu */
+.answer__btn.correct::after { content: " ✓"; }
+.answer__btn.wrong::after { content: " ✗"; }
+
+@keyframes shake {
+    20%, 60% { transform: translateX(-4px); }
+    40%, 80% { transform: translateX(4px); }
+}
+
+@media (hover: hover) {
+    .answer__btn:hover:not(:disabled) { background: var(--accent-soft); }
+    .answer__toggle:hover { filter: brightness(.95); }
+}
+
+/* ---------------------------------------------------------------- dock: komunikat, przyciski, wynik */
+
+.ex__dock {
+    grid-area: dock;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: .625rem .75rem;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: .75rem var(--gutter) calc(.75rem + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--border);
+    background: var(--glass);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+}
+
+.feedback {
+    grid-column: 1; grid-row: 1;
+    min-height: 2.6em;                    /* stała wysokość - bez skakania układu */
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font-size: .95rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--muted);
+}
+
+.feedback[data-kind="correct"] { color: var(--ok-text); }
+.feedback[data-kind="wrong"] { color: var(--bad-text); }
+
+.score { grid-column: 2; grid-row: 1; display: flex; gap: .5rem; }
+
+.score__item {
+    display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+    min-width: 3.5rem;
+    padding: .375rem .75rem;
+    border-radius: 999px;
+    color: var(--on-fill);
+    font-size: 1.125rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    justify-content: center;
+}
+
+.score__item output { font: inherit; }
+.score__icon svg { width: 1.1rem; height: 1.1rem; display: block; }
+.score__item--correct { background: var(--ok); }
+.score__item--wrong { background: var(--bad); }
+
+.controls {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: .5rem;
+}
+
+.controls .btn { min-width: 0; padding-inline: .5rem; text-transform: uppercase; letter-spacing: .03em; font-size: .9rem; }
+
+/* ---------------------------------------------------------------- układ boczny */
+
+@media (min-width: 55rem), (orientation: landscape) and (min-width: 37.5rem) and (max-height: 520px) {
+    .ex {
+        grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
+        grid-template-rows: auto;
+        grid-template-areas: "side answers";
+        align-items: start;
+        column-gap: clamp(1.25rem, 3vw, 2.5rem);
+    }
+
+    .ex__side {
+        grid-area: side;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        position: sticky;
+        top: calc(var(--header-h) + 1rem);
+        max-height: calc(100dvh - var(--header-h) - 2rem);
+        overflow: auto;
+        padding-top: 1.25rem;
+    }
+
+    .ex__intro { padding-top: 0; }
+    .ex__answers { padding-top: 3rem; }
+    .ex__answers .answers { margin-top: 0; }
+
+    .ex__dock {
+        position: static;
+        margin: 0;
+        padding: 1rem;
+        border: 1.5px solid var(--border);
+        border-radius: var(--radius-l);
+        background: var(--surface);
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+        box-shadow: var(--shadow-1);
+    }
+
+    .controls { grid-template-columns: 1fr 1fr; }
+    .controls #start-button { grid-column: 1 / -1; min-height: 3.25rem; }
+}
+
+/* panel boczny na tablecie/komputerze ma miejsce: wynik nad komunikatem, komunikat na całą szerokość */
+@media (min-width: 55rem) {
+    .score { grid-column: 1 / -1; grid-row: 1; }
+    .feedback { grid-column: 1 / -1; grid-row: 2; min-height: 3.9em; }
+}
+
+/* telefon w poziomie: ciaśniej */
+@media (orientation: landscape) and (max-height: 520px) {
+    .ex__side { gap: .625rem; padding-top: .75rem; }
+    .ex__title { font-size: 1.375rem; }
+    .ex__summary { margin-bottom: .5rem; }
+    .ex__dock { padding: .75rem; gap: .5rem; }
+    .feedback { min-height: 2.4em; font-size: .875rem; }
+    .ex__answers { padding-top: .75rem; }
+    .ex__hint { display: none; }
+}
+
+/* duże ekrany: więcej miejsca na odpowiedzi */
+@media (min-width: 80rem) {
+    .answers { grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); }
+}
