@@ -37,7 +37,7 @@ Poniżej przedstawiono główne widoki interfejsu aplikacji, zorganizowane w cel
 
 ---
 
-## 🤝 Współpraca (Kontrybucje)
+## 🤝 Współpraca
 
 **Wielka Tercja** jest otwarta na współpracę. Zachęcamy społeczność do aktywnego udziału w rozwoju poprzez:
 
